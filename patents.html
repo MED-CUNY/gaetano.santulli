@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Publications of Prof. Gaetano Santulli</title>
+<title>Patents - Prof. Gaetano Santulli</title>
 
 <style>
 body {
@@ -14,9 +14,7 @@ body {
   color: #eaeaea;
 }
 
-/* -------------------------
-   Navigation Bar
-------------------------- */
+/* Navigation Bar */
 nav {
   background-color: #00755E;
   padding: 12px 24px;
@@ -44,29 +42,13 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
-  transition: color 0.3s ease;
 }
 
 nav a:hover {
   color: #d0f0e8;
 }
 
-/* -------------------------
-   Publications styling
-------------------------- */
-p {
-  margin-bottom: 15px;
-}
-
-a.pub-link {
-  color: #36d1dc;
-  text-decoration: none;
-}
-
-a.pub-link:hover {
-  text-decoration: underline;
-}
-
+/* Content */
 h2 {
   color: #36d1dc;
   margin-top: 40px;
@@ -78,7 +60,7 @@ ul {
 }
 
 li {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   transition: transform 0.2s;
 }
 
@@ -86,18 +68,13 @@ li:hover {
   transform: scale(1.02);
 }
 
-/* -------------------------
-   Page Counter
-------------------------- */
-.page-counter {
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(90deg, #36d1dc, #5b86e5);
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 40px;
+strong.title {
+  color: #36d1dc;
+}
+
+.meta {
+  color: #bfbfbf;
+  font-size: 15px;
 }
 </style>
 </head>
@@ -121,26 +98,48 @@ li:hover {
 </nav>
 
 <p style="color:#36d1dc; font-weight:bold; font-size:18px;">
-  Peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
+  Patents and Intellectual Property
 </p>
 
-<div id="publications">
-  <p>Loading publications…</p>
-</div>
+<ul>
+  <li>
+    <strong class="title">
+      CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW-ONSET DIABETES IN COVID-19 AND LONG COVID
+    </strong><br>
+    <span class="meta">
+      (C-00001500-2022)<br>
+      US-A1: 20240287608 &nbsp;|&nbsp; Application No.: 18/424483<br>
+      International Classes: C12Q1/6883
+    </span>
+  </li>
 
-<div class="page-counter" id="page-counter">
-  Page Visits: <span id="counter">0</span>
-</div>
+  <li>
+    <strong class="title">
+      CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19
+    </strong><br>
+    <span class="meta">
+      (C-00001482-2021)
+    </span>
+  </li>
 
-<script>
-// ---------------------------
-// Page Counter (LocalStorage)
-// ---------------------------
-let count = localStorage.getItem('pageCounter') || 5432;
-count++;
-localStorage.setItem('pageCounter', count);
-document.getElementById('counter').textContent = count;
-</script>
+  <li>
+    <strong class="title">
+      SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION
+    </strong><br>
+    <span class="meta">
+      (#C-00001503-2022)
+    </span>
+  </li>
+
+  <li>
+    <strong class="title">
+      RETINOIC ACID RECEPTOR BETA2 AS A POTENTIAL TARGET FOR THE TREATMENT OF HEART FAILURE
+    </strong><br>
+    <span class="meta">
+      (P-612682-US-2022)
+    </span>
+  </li>
+</ul>
 
 </body>
 </html>

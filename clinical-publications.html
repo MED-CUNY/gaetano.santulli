@@ -6,14 +6,27 @@
 
 <style>
 /* -------------------------
-   Navigation bar
+   Reset & base styling
+------------------------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #000000;
+  color: #eaeaea;
+}
+
+/* -------------------------
+   Navigation bar (same as About page)
 ------------------------- */
 nav {
-  background-color: #333;
-  padding: 10px 20px;
+  background-color: #00755E; /* Tropical Rain Forest */
+  padding: 12px 24px;
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
 nav ul {
@@ -21,112 +34,152 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
 }
 
 nav li {
-  margin-right: 20px;
+  margin-right: 22px;
 }
 
 nav a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
+  font-size: 14px;
+  transition: color 0.3s ease;
 }
 
 nav a:hover {
-  color: #36d1dc;
+  color: #d0f0e8; /* subtle mint hover */
 }
 
 /* -------------------------
-   Page styling
+   Page content
 ------------------------- */
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  padding-left: 40px;
-  line-height: 1.6;
+.content {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 24px;
+  text-align: left;
+}
+
+.content h1 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content p.intro {
+  color: #cccccc;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* -------------------------
+   PubMed list styling
+------------------------- */
+ul.pub-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.pub-list li {
+  margin-bottom: 22px;
+  padding: 12px;
+  background-color: #111111;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(255,255,255,0.08);
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+}
+
+ul.pub-list li:hover {
+  transform: scale(1.02);
+  background-color: #1a1a1a;
+  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
+}
+
+strong.journal {
+  color: #36d1dc; /* light blue for journals */
 }
 
 a {
-  color: blue;
+  color: #5b86e5;
   text-decoration: none;
   transition: color 0.3s;
 }
 
 a:hover {
-  color: darkblue;
+  color: #d0f0e8;
   text-decoration: underline;
 }
 
-h2 {
-  color: brown;
-  margin-top: 40px;
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-li {
-  margin-bottom: 22px;
-  transition: transform 0.2s;
-}
-
-li:hover {
-  transform: scale(1.02);
-}
-
-strong.journal {
-  color: green;
-}
-
-u {
-  text-decoration: underline;
-}
-
+/* -------------------------
+   Page visit counter
+------------------------- */
 .page-counter {
   margin-top: 50px;
   padding: 15px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: #ffffff;
   background: linear-gradient(90deg, #36d1dc, #5b86e5);
   border-radius: 10px;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  margin-top: 60px;
+  font-size: 14px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Navigation -->
+<!-- Navigation Bar -->
 <nav>
   <ul>
-    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
+    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+    <li><a href="funding.html">Funding</a></li>
+    <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
+    <li><a href="patents.html">Patents</a></li>
+    <li><a href="books.html">Books</a></li>
     <li><a href="clinical-publications.html">Clinical Publications</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<p style="color:brown; font-weight:bold; font-size:18px;">
-Clinical (patient-oriented) peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
-</p>
+<!-- Page Content -->
+<div class="content">
+  <h1>Clinical Publications</h1>
 
-<div id="publications">
-  <p>Loading clinical publications from PubMed…</p>
-</div>
+  <p class="intro">
+    Clinical (patient-oriented) peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
+  </p>
 
-<div class="page-counter">
-Page Visits: <span id="counter">0</span>
+  <div id="publications">
+    <p>Loading clinical publications from PubMed…</p>
+  </div>
+
+  <div class="page-counter">
+    Page Visits: <span id="counter">0</span>
+  </div>
 </div>
 
 <script>
 /* ---------------------------
-   Counter
+   Page visit counter
 --------------------------- */
 let count = localStorage.getItem("clinicalPageCounter") || 1200;
 count++;
@@ -170,58 +223,65 @@ const replacements = {
 };
 
 /* ---------------------------
-   Fetch PubMed (no cutoff)
+   Fetch PubMed and display
 --------------------------- */
 async function fetchPubMed() {
-  const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
-  const s = await (await fetch(esearch)).json();
+  try {
+    const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
+    const s = await (await fetch(esearch)).json();
+    const webenv = s.esearchresult.webenv;
+    const key = s.esearchresult.querykey;
+    const total = parseInt(s.esearchresult.count);
 
-  const webenv = s.esearchresult.webenv;
-  const key = s.esearchresult.querykey;
-  const total = parseInt(s.esearchresult.count);
+    let html = "<ul class='pub-list'>";
+    const step = 200;
 
-  let html = "<ul>";
-  const step = 200;
+    for (let i = 0; i < total; i += step) {
+      const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
+      const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
 
-  for (let i = 0; i < total; i += step) {
-    const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
-    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
+      xml.querySelectorAll("PubmedArticle").forEach(a => {
+        const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
+        if (journalRaw.includes("RESEARCH SQUARE")) return;
 
-    xml.querySelectorAll("PubmedArticle").forEach(a => {
-      const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
-      if (journalRaw.includes("RESEARCH SQUARE")) return;
+        const journal = replacements[journalRaw] || journalRaw;
+        const pmid = a.querySelector("PMID")?.textContent;
+        const title = a.querySelector("ArticleTitle")?.textContent || "";
+        const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
 
-      const journal = replacements[journalRaw] || journalRaw;
-      const pmid = a.querySelector("PMID")?.textContent;
-      const title = a.querySelector("ArticleTitle")?.textContent || "";
-      const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+        const authors = [...a.querySelectorAll("Author")]
+          .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
+          .join(", ")
+          .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
 
-      const authors = [...a.querySelectorAll("Author")]
-        .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
-        .join(", ")
-        .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
+        const doi = [...a.querySelectorAll("ArticleId")]
+          .find(x => x.getAttribute("IdType") === "doi")?.textContent;
 
-      const doi = [...a.querySelectorAll("ArticleId")]
-        .find(x => x.getAttribute("IdType") === "doi")?.textContent;
+        html += `
+        <li>
+          <strong><a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a></strong><br>
+          <em>${authors}</em><br>
+          <strong class="journal">${journal}</strong>. ${year}.
+          ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
+        </li>`;
+      });
+    }
 
-      html += `
-      <li>
-        <strong>
-          <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a>
-        </strong><br>
-        <em>${authors}</em><br>
-        <strong class="journal">${journal}</strong>. ${year}.
-        ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
-      </li>`;
-    });
+    html += "</ul>";
+    document.getElementById("publications").innerHTML = html;
+  } catch(e) {
+    document.getElementById("publications").innerHTML = "<p>Failed to load publications.</p>";
+    console.error(e);
   }
-
-  html += "</ul>";
-  document.getElementById("publications").innerHTML = html;
 }
 
 fetchPubMed();
 </script>
+
+<!-- Footer -->
+<footer>
+  &copy; 2026 Prof. Gaetano Santulli
+</footer>
 
 </body>
 </html>

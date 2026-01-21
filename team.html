@@ -3,106 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <title>Team - Prof. Gaetano Santulli</title>
+
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background-color: #f5f5f5;
-  }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f5f5f5;
+}
 
-  /* Navigation Bar */
-  nav {
-    background-color: #333;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* Navigation Bar */
+nav {
+  background-color: #333;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
 
-  nav li {
-    margin-right: 20px;
-  }
+nav li {
+  margin-right: 20px;
+}
 
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
 
-  nav a:hover {
-    color: #36d1dc; /* light blue hover */
-  }
+nav a:hover {
+  color: #36d1dc;
+}
 
-  /* Page Content */
-  .content {
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 0 20px;
-  }
+/* Page Content */
+.content {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
 
-  h1 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #333;
-  }
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
 
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 25px;
-  }
+/* PI Section */
+.pi-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
 
-  .team-member {
-    background-color: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-  }
+.pi-card {
+  width: 260px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-  .team-member:hover {
-    transform: scale(1.05);
-  }
+.pi-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center;
+  margin: 0 auto 12px auto;
+  background-color: #ddd;
+}
 
-  .member-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #ddd;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
+.member-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+  color: #36d1dc;
+}
 
-  .member-name {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+.member-role {
+  font-size: 0.9em;
+  color: #555;
+}
 
-  .member-role {
-    font-size: 0.9em;
-    color: #555;
-  }
+.pi-metrics {
+  font-size: 0.85em;
+  margin-top: 6px;
+}
 
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    margin-top: 50px;
-  }
+.pi-metrics a {
+  color: #36d1dc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.pi-metrics a:hover {
+  text-decoration: underline;
+}
+
+/* Team Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.team-member {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.team-member:hover {
+  transform: scale(1.05);
+}
+
+.member-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: 0 auto 12px auto;
+  background-color: #ddd;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  margin-top: 50px;
+}
 </style>
 </head>
+
 <body>
 
 <!-- Navigation Bar -->
@@ -116,117 +165,81 @@
   </ul>
 </nav>
 
-<!-- Page Content -->
 <div class="content">
   <h1>Meet Our Team</h1>
-  <div class="team-grid">
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Alice Johnson</div>
-      <div class="member-role">Postdoctoral Fellow</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Brian Smith</div>
-      <div class="member-role">Research Scientist</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Carla Lee</div>
-      <div class="member-role">Graduate Student</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. David Kim</div>
-      <div class="member-role">Postdoctoral Fellow</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Emily Davis</div>
-      <div class="member-role">Research Scientist</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Frank Miller</div>
-      <div class="member-role">Graduate Student</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Grace Wilson</div>
-      <div class="member-role">Lab Technician</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Henry Brown</div>
-      <div class="member-role">Postdoctoral Fellow</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Isabella Martinez</div>
-      <div class="member-role">Research Scientist</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Jack Thompson</div>
-      <div class="member-role">Graduate Student</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Karen White</div>
-      <div class="member-role">Lab Technician</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Liam Johnson</div>
-      <div class="member-role">Postdoctoral Fellow</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Mia Anderson</div>
-      <div class="member-role">Research Scientist</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Noah Lee</div>
-      <div class="member-role">Graduate Student</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Olivia Kim</div>
-      <div class="member-role">Lab Technician</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Patrick Clark</div>
-      <div class="member-role">Postdoctoral Fellow</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Quinn Evans</div>
-      <div class="member-role">Research Scientist</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Rachel Scott</div>
-      <div class="member-role">Graduate Student</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Samuel Harris</div>
-      <div class="member-role">Lab Technician</div>
-    </div>
-    <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Tina Lewis</div>
-      <div class="member-role">Research Scientist</div>
-    </div>
-  </div>
+
+  <!-- PI Section -->
+  <div id="pi-section" class="pi-section"></div>
+
+  <!-- Team Members Grid -->
+  <div id="team-grid" class="team-grid"></div>
 </div>
 
-<!-- Footer -->
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
+
+<script>
+// Data arrays
+const pi = {
+  name: "Prof. Gaetano Santulli",
+  role1: "Full Professor of Medicine (Cardiology)",
+  role2: "Principal Investigator",
+  photo: "santulli.jpg",
+  hindex: 106,
+  scholarLink: "https://scholar.google.com/citations?user=IX4IYaEAAAAJ&hl=en&inst=151474670492416252"
+};
+
+const team = [
+  {name: "Dr. Jessica Gambardella", role: "Assistant Professor", photo: "gambardella.jpg"},
+  {name: "Dr. Stanislovas S. Jankauskas", role: "Assistant Professor", photo: "jankauskas.jpg"},
+  {name: "Dr. Pasquale Mone", role: "Assistant Professor", photo: "mone.jpg"},
+  {name: "Dr. Fahimeh Varzideh", role: "Assistant Professor", photo: "varzideh.jpg"},
+  {name: "Dr. Urna Kansakar", role: "Postdoctoral Fellow", photo: "kansakar.jpg"},
+  {name: "Dr. Shivangi Pande", role: "Postdoctoral Fellow", photo: "pande.jpg"},
+  {name: "Grace Wilkon", role: "Lab Technician", photo: "wilkon.jpg"},
+  {name: "Dr. Hanna Brown", role: "Postdoctoral Fellow", photo: "brown.jpg"},
+  {name: "Dr. Isabella Martinez", role: "Research Scientist", photo: "martinez.jpg"},
+  {name: "Jennifer Thompson", role: "Graduate Student", photo: "thompson.jpg"},
+  {name: "Karen White", role: "Lab Technician", photo: "white.jpg"},
+  {name: "Dr. Liam Johnson", role: "Postdoctoral Fellow", photo: "johnson.jpg"},
+  {name: "Dr. Mia Anderson", role: "Research Scientist", photo: "anderson.jpg"},
+  {name: "Noah Lee", role: "Graduate Student", photo: "lee.jpg"},
+  {name: "Olivia Kim", role: "Lab Technician", photo: "kim.jpg"},
+  {name: "Dr. Patrick Clark", role: "Postdoctoral Fellow", photo: "clark.jpg"},
+  {name: "Dr. Quinn Evans", role: "Research Scientist", photo: "evans.jpg"},
+  {name: "Rachel Scott", role: "Graduate Student", photo: "scott.jpg"},
+  {name: "Samuel Harris", role: "Lab Technician", photo: "harris.jpg"},
+  {name: "Dr. Tina Lewis", role: "Research Scientist", photo: "lewis.jpg"}
+];
+
+// Render PI
+const piSection = document.getElementById('pi-section');
+piSection.innerHTML = `
+  <div class="team-member pi-card">
+    <img src="${pi.photo}" alt="${pi.name}" class="pi-photo">
+    <div class="member-name">${pi.name}</div>
+    <div class="member-role">${pi.role1}</div>
+    <div class="member-role">${pi.role2}</div>
+    <div class="pi-metrics">
+      Hirsch Index: <a href="${pi.scholarLink}" target="_blank" rel="noopener noreferrer">${pi.hindex}</a>
+    </div>
+  </div>
+`;
+
+// Render team
+const teamGrid = document.getElementById('team-grid');
+team.forEach(member => {
+  const memberDiv = document.createElement('div');
+  memberDiv.className = 'team-member';
+  memberDiv.innerHTML = `
+    <img src="${member.photo}" alt="${member.name}" class="member-photo">
+    <div class="member-name">${member.name}</div>
+    <div class="member-role">${member.role}</div>
+  `;
+  teamGrid.appendChild(memberDiv);
+});
+</script>
 
 </body>
 </html>

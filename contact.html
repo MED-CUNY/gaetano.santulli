@@ -3,17 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <title>Contact - Prof. Gaetano Santulli</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+
+<style>
+/* -------------------------
+   Reset & base styling
+------------------------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #000000;
+  color: #eaeaea;
+}
+
+/* -------------------------
+   Navigation bar
+------------------------- */
+nav {
+  background-color: #00755E; /* Tropical Rain Forest */
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav li {
+  margin-right: 22px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #d0f0e8; /* subtle mint hover */
+}
+
+/* -------------------------
+   Page content
+------------------------- */
+.content {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+
+.content h1, .content h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.content p {
+  color: #cccccc;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* -------------------------
+   Contact Form
+------------------------- */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+  background-color: #111111;
+  color: #eaeaea;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+form input::placeholder, form textarea::placeholder {
+  color: #888888;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 12px #36d1dc;
+  border: 1px solid #36d1dc;
+}
+
+form button {
+  padding: 12px 25px;
+  background-color: #36d1dc;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+form button:hover, form button:focus {
+  background-color: #5b86e5;
+  box-shadow: 0 0 15px #36d1dc, 0 4px 10px rgba(54, 209, 220, 0.5);
+}
+
+/* -------------------------
+   Donation Section
+------------------------- */
+.donation {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.donation div {
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.donation div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+}
+
+.donation img {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* -------------------------
+   Links
+------------------------- */
+a {
+  color: #5b86e5;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #d0f0e8;
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  margin-top: 60px;
+  font-size: 14px;
+}
+</style>
 </head>
+
 <body>
 
 <!-- Navigation Bar -->
 <nav>
   <ul>
-    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
+    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+    <li><a href="funding.html">Funding</a></li>
+    <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
+    <li><a href="patents.html">Patents</a></li>
+    <li><a href="books.html">Books</a></li>
     <li><a href="clinical-publications.html">Clinical Publications</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -26,57 +201,55 @@
 
   <!-- Contact Form -->
   <form>
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" placeholder="John Doe" style="width:100%; padding:8px; margin-bottom:15px;"><br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="John Doe">
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" placeholder="johndoe@example.com" style="width:100%; padding:8px; margin-bottom:15px;"><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="johndoe@example.com">
 
-    <label for="subject">Subject:</label><br>
-    <input type="text" id="subject" name="subject" placeholder="Question about publications" style="width:100%; padding:8px; margin-bottom:15px;"><br>
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" placeholder="Question about publications">
 
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="6" placeholder="Write your message here..." style="width:100%; padding:8px; margin-bottom:15px;"></textarea><br>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="6" placeholder="Write your message here..."></textarea>
 
-    <button type="submit" style="padding:10px 20px; background-color:#36d1dc; color:white; border:none; border-radius:5px; cursor:pointer;">Send</button>
+    <button type="submit">Send</button>
   </form>
-  
+
   <!-- Contact Info -->
   <p style="margin-top:30px;">
     <strong>Mock Contact Info:</strong><br>
-    Prof. Gaetano Santulli<br>
-    Department of Cardiology<br>
-    University/Institute Name<br>
-    Email: <a href="mailto:gsantulli@example.com">gsantulli@example.com</a><br>
-    Phone: +1 (555) 123-4567
+    Prof. Gaetano Santulli, MD, PhD, FAHA<br>
+    Medical Professor - Clinical (Full Professor - Cardiologist)<br>
+    City University of New York - School of Medicine, Manhattan, NY<br>
+    Email: <a href="mailto:gsantulli@example.com">gsantulli001@gmail.com</a><br>
   </p>
 
   <!-- Donation Section -->
-  <h2 style="margin-top:50px;">Support Our Work / Donate</h2>
+  <h2>Support Our Work / Donate</h2>
   <p>If you would like to support our research and educational activities, you can donate via PayPal or Venmo:</p>
 
-  <div style="display:flex; gap:30px; flex-wrap: wrap; margin-top:20px;">
+  <div class="donation">
     <!-- PayPal -->
-    <div style="text-align:center;">
+    <div>
       <a href="https://www.paypal.com/donate?hosted_button_id=MOCKID" target="_blank">
-        <img src="paypal-qr-mock.png" alt="PayPal QR Code" style="width:150px; height:150px; border:1px solid #ccc; border-radius:10px;">
+        <img src="paypal.png" alt="PayPal QR Code">
       </a>
       <p>PayPal</p>
     </div>
 
     <!-- Venmo -->
-    <div style="text-align:center;">
+    <div>
       <a href="https://venmo.com/MOCKUSERNAME" target="_blank">
-        <img src="venmo-qr-mock.png" alt="Venmo QR Code" style="width:150px; height:150px; border:1px solid #ccc; border-radius:10px;">
+        <img src="venmo.png" alt="Venmo QR Code">
       </a>
       <p>Venmo</p>
     </div>
   </div>
-
 </div>
 
 <!-- Footer -->
-<footer style="margin-top:50px; text-align:center; color:#777;">
+<footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
 
