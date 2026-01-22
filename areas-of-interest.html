@@ -6,6 +6,9 @@
 <title>Areas of Interest - Prof. Gaetano Santulli</title>
 
 <style>
+/* -------------------------
+   Base styling
+------------------------- */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -24,6 +27,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
 nav ul {
@@ -31,6 +35,7 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -43,6 +48,38 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #d0f0e8;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 24px;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav li {
+    margin: 10px 0;
+  }
+  .hamburger {
+    display: block;
+  }
 }
 
 /* -------------------------
@@ -99,7 +136,7 @@ nav a {
   text-align: justify;
 }
 
-/* Responsive */
+/* Responsive content */
 @media (max-width: 900px) {
   .area {
     grid-template-columns: 1fr;
@@ -126,14 +163,32 @@ footer {
 
 <body>
 
+<!-- Navigation Bar -->
+<nav>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <ul id="nav-menu">
+    <li><a href="about.html">About</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+    <li><a href="funding.html">Funding</a></li>
+    <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="clinical-publications.html">Clinical Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
 <div class="hero">
   <h1>Areas of Interest</h1>
 </div>
 
+<!-- Main Content -->
 <div class="content">
 
   <div class="area">
-    <img src="cardiovascular-disease1.gif" alt="Cardiovascular Disease">
+    <img src="cardiovascular-disease1.gif">
     <div>
       <h2>Cardiovascular Disease</h2>
       <p>
@@ -144,11 +199,11 @@ footer {
         outcomes.
       </p>
     </div>
-    <img src="cardiovascular-disease2.gif" alt="Cardiovascular Disease">
+    <img src="cardiovascular-disease2.gif">
   </div>
 
   <div class="area">
-    <img src="metabolic-disorders1.gif" alt="Metabolic Disorders">
+    <img src="metabolic-disorders1.gif">
     <div>
       <h2>Metabolic Disorders</h2>
       <p>
@@ -158,11 +213,11 @@ footer {
         progression.
       </p>
     </div>
-    <img src="metabolic-disorders2.jpg" alt="Metabolic Disorders">
+    <img src="metabolic-disorders2.jpg">
   </div>
 
   <div class="area">
-    <img src="non-coding-rna1.jpg" alt="Non-coding RNA">
+    <img src="non-coding-rna1.jpg">
     <div>
       <h2>Non-coding RNA</h2>
       <p>
@@ -172,11 +227,11 @@ footer {
         multiple disease contexts.
       </p>
     </div>
-    <img src="non-coding-rna2.jpg" alt="Non-coding RNA">
+    <img src="non-coding-rna2.jpg">
   </div>
 
   <div class="area">
-    <img src="calcium1.gif" alt="Calcium Signaling">
+    <img src="calcium1.gif">
     <div>
       <h2>Calcium</h2>
       <p>
@@ -185,11 +240,11 @@ footer {
         implications for cardiovascular, metabolic, and neuromuscular disorders.
       </p>
     </div>
-    <img src="calcium2.jpg" alt="Calcium Signaling">
+    <img src="calcium-signaling2.jpg">
   </div>
 
   <div class="area">
-    <img src="stem-cells1.jpg" alt="Stem Cells">
+    <img src="stem-cells1.jpg">
     <div>
       <h2>Stem Cells</h2>
       <p>
@@ -198,11 +253,11 @@ footer {
         state-of-the-art bioengineering and regenerative medicine technologies.
       </p>
     </div>
-    <img src="stem-cells2.jpg" alt="Stem Cells">
+    <img src="stem-cells2.jpg">
   </div>
 
   <div class="area">
-    <img src="translational-medicine1.jpg" alt="Translational Medicine">
+    <img src="translational-medicine1.jpg">
     <div>
       <h2>Translational Medicine</h2>
       <p>
@@ -211,11 +266,11 @@ footer {
         diagnosis, treatment, and prevention of human disease.
       </p>
     </div>
-    <img src="translational-medicine2.jpg" alt="Translational Medicine">
+    <img src="translational-medicine2.jpg">
   </div>
 
   <div class="area">
-    <img src="aging-longevity1.jpg" alt="Aging and Longevity">
+    <img src="aging-longevity1.jpg">
     <div>
       <h2>Aging and Healthy Longevity</h2>
       <p>
@@ -224,11 +279,11 @@ footer {
         the roles of diet and nutrition in promoting healthy longevity.
       </p>
     </div>
-    <img src="aging-longevity2.jpg" alt="Aging and Longevity">
+    <img src="aging-longevity2.jpg">
   </div>
 
   <div class="area">
-    <img src="clinical-research1.jpg" alt="Clinical Research">
+    <img src="clinical-research1.jpg">
     <div>
       <h2>Clinical Research</h2>
       <p>
@@ -239,7 +294,7 @@ footer {
         </a>.
       </p>
     </div>
-    <img src="clinical-research2.jpg" alt="Clinical Research">
+    <img src="clinical-research2.jpg">
   </div>
 
 </div>
@@ -247,6 +302,12 @@ footer {
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('nav-menu').classList.toggle('active');
+}
+</script>
 
 </body>
 </html>
