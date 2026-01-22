@@ -11,7 +11,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0 24px; /* consistent horizontal padding */
+  padding: 0;
   line-height: 1.6;
   background-color: #000000;
   color: #eaeaea;
@@ -27,6 +27,7 @@ nav {
   top: 0;
   z-index: 100;
   border-bottom: 1px solid rgba(255,255,255,0.2);
+  margin-bottom: 30px; /* match other pages */
 }
 
 nav ul {
@@ -46,6 +47,7 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
+  transition: color 0.3s ease;
 }
 
 nav a:hover {
@@ -53,8 +55,14 @@ nav a:hover {
 }
 
 /* -------------------------
-   Content
+   Page content
 ------------------------- */
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
 h1 {
   text-align: center;
   margin-top: 40px;
@@ -121,86 +129,88 @@ footer {
   </ul>
 </nav>
 
-<h1>Research Funding</h1>
+<div class="content">
+  <h1>Research Funding</h1>
 
-<ul>
-  <li>
-    <strong class="grant-title">IPA1268813 – American Heart Association (AHA)</strong><br>
-    <span class="meta">
-      Santulli (PI)<br>
-      $100,000/year<br>
-      A paradigm-shifting idea in storage-disease cardiomyopathy.
-    </span>
-  </li>
+  <ul>
+    <li>
+      <strong class="grant-title">IPA1268813 – American Heart Association (AHA)</strong><br>
+      <span class="meta">
+        Santulli (PI)<br>
+        $100,000/year<br>
+        A paradigm-shifting idea in storage-disease cardiomyopathy.
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">R01-HL146691 – NIH (NHLBI)</strong><br>
-    <span class="meta">
-      Santulli (PI)<br>
-      $417,500/year<br>
-      Functional role of IP3 receptors in the regulation of cardiac myofibroblasts.
-    </span>
-  </li>
+    <li>
+      <strong class="grant-title">R01-HL146691 – NIH (NHLBI)</strong><br>
+      <span class="meta">
+        Santulli (PI)<br>
+        $417,500/year<br>
+        Functional role of IP3 receptors in the regulation of cardiac myofibroblasts.
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">Hirschl / Weill-Caulier Trust Research Grant</strong><br>
-    <span class="meta">
-      Santulli (PI)<br>
-      $200,000 direct
-    </span>
-  </li>
+    <li>
+      <strong class="grant-title">Hirschl / Weill-Caulier Trust Research Grant</strong><br>
+      <span class="meta">
+        Santulli (PI)<br>
+        $200,000 direct
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">Diabetes Action</strong><br>
-    <span class="meta">
-      Santulli (PI)<br>
-      $40,000 direct
-    </span>
-  </li>
+    <li>
+      <strong class="grant-title">Diabetes Action</strong><br>
+      <span class="meta">
+        Santulli (PI)<br>
+        $40,000 direct
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">R01-HL159062-01 – NIH (NHLBI)</strong><br>
-    <span class="meta">
-      Kitsis (PI) | Role: Co-I<br>
-      $689,091/year<br>
-      Modulation of mitofusin activity to treat heart disease.
-    </span>
-  </li>
+    <li>
+      <strong class="grant-title">R01-HL159062-01 – NIH (NHLBI)</strong><br>
+      <span class="meta">
+        Kitsis (PI) | Role: Co-I<br>
+        $689,091/year<br>
+        Modulation of mitofusin activity to treat heart disease.
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">R01-HL164772 – NIH (NHLBI)</strong><br>
-    <span class="meta">
-      Kitsis (PI) | Role: Co-I<br>
-      $621,990/year<br>
-      Caspase-9 as a nodal point connecting necrotic and apoptotic cell death in myocardial infarction.
-    </span>
-  </li>
+    <li>
+      <strong class="grant-title">R01-HL164772 – NIH (NHLBI)</strong><br>
+      <span class="meta">
+        Kitsis (PI) | Role: Co-I<br>
+        $621,990/year<br>
+        Caspase-9 as a nodal point connecting necrotic and apoptotic cell death in myocardial infarction.
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">R01-DK123259 – NIH (NIDDK)</strong><br>
-    <span class="meta">
-      Santulli (PI)<br>
-      $250,000/year direct<br>
-      Beta cell intracellular calcium and diabetes.
-    </span>
-  </li>
+    <li>
+      <strong class="grant-title">R01-DK123259 – NIH (NIDDK)</strong><br>
+      <span class="meta">
+        Santulli (PI)<br>
+        $250,000/year direct<br>
+        Beta cell intracellular calcium and diabetes.
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">UM1-TR004400 – NIH (NCATS)</strong><br>
-    <span class="meta">
-      Santulli (PI) – ICTR Pilot Award<br>
-      $40,000 direct<br>
-      Overcoming a long-standing translational barrier in stem cell research.
-    </span>
-  </li>
+    <li>
+      <strong class="grant-title">UM1-TR004400 – NIH (NCATS)</strong><br>
+      <span class="meta">
+        Santulli (PI) – ICTR Pilot Award<br>
+        $40,000 direct<br>
+        Overcoming a long-standing translational barrier in stem cell research.
+      </span>
+    </li>
 
-  <li>
-    <strong class="grant-title">Additional NIH, AHA, and Foundation Support</strong><br>
-    <span class="meta">
-      Including R01-DK033823, UL1-TR002556, R56-AG066431, ES-DRC P&amp;F, K99/R00-DK107895, and AHA SDG awards.
-    </span>
-  </li>
-</ul>
+    <li>
+      <strong class="grant-title">Additional NIH, AHA, and Foundation Support</strong><br>
+      <span class="meta">
+        Including R01-DK033823, UL1-TR002556, R56-AG066431, ES-DRC P&amp;F, K99/R00-DK107895, and AHA SDG awards.
+      </span>
+    </li>
+  </ul>
+</div>
 
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
