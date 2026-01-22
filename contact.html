@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Contact - Prof. Gaetano Santulli</title>
+<title>Contact – Prof. Gaetano Santulli</title>
 
 <style>
 /* -------------------------
@@ -18,15 +18,24 @@ body {
 }
 
 /* -------------------------
-   Navigation bar
+   Navigation bar (About-style)
 ------------------------- */
 nav {
-  background-color: #00755E; /* Tropical Rain Forest */
+  background-color: #00755E;
   padding: 12px 24px;
   position: sticky;
   top: 0;
   z-index: 100;
   border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 nav ul {
@@ -35,10 +44,11 @@ nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav li {
-  margin-right: 22px;
+  margin: 0 14px;
 }
 
 nav a {
@@ -50,7 +60,68 @@ nav a {
 }
 
 nav a:hover {
-  color: #d0f0e8; /* subtle mint hover */
+  color: #d0f0e8;
+}
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: #ffffff;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 12px;
+    background-color: #00755E;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav li {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+
+/* -------------------------
+   Hero section (About-style)
+------------------------- */
+.hero {
+  background: url("hero.jpg") center/cover no-repeat;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.hero h1 {
+  position: relative;
+  color: #ffffff;
+  font-size: 40px;
+  z-index: 1;
 }
 
 /* -------------------------
@@ -62,7 +133,7 @@ nav a:hover {
   padding: 0 24px;
 }
 
-.content h1, .content h2 {
+.content h2 {
   color: #ffffff;
   margin-bottom: 20px;
   text-align: center;
@@ -83,7 +154,8 @@ form label {
   font-weight: bold;
 }
 
-form input, form textarea {
+form input,
+form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -91,14 +163,15 @@ form input, form textarea {
   border: none;
   background-color: #111111;
   color: #eaeaea;
-  transition: box-shadow 0.3s, border 0.3s;
 }
 
-form input::placeholder, form textarea::placeholder {
+form input::placeholder,
+form textarea::placeholder {
   color: #888888;
 }
 
-form input:focus, form textarea:focus {
+form input:focus,
+form textarea:focus {
   outline: none;
   box-shadow: 0 0 12px #36d1dc;
   border: 1px solid #36d1dc;
@@ -115,9 +188,9 @@ form button {
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-form button:hover, form button:focus {
+form button:hover {
   background-color: #5b86e5;
-  box-shadow: 0 0 15px #36d1dc, 0 4px 10px rgba(54, 209, 220, 0.5);
+  box-shadow: 0 0 15px #36d1dc;
 }
 
 /* -------------------------
@@ -128,7 +201,7 @@ form button:hover, form button:focus {
   gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .donation div {
@@ -149,20 +222,6 @@ form button:hover, form button:focus {
 }
 
 /* -------------------------
-   Links
-------------------------- */
-a {
-  color: #5b86e5;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #d0f0e8;
-  text-decoration: underline;
-}
-
-/* -------------------------
    Footer
 ------------------------- */
 footer {
@@ -178,79 +237,86 @@ footer {
 
 <body>
 
-<!-- Navigation Bar -->
+<!-- Navigation -->
 <nav>
-  <ul>
-    <li><a href="about.html">About</a></li>
-    <li><a href="team.html">Team</a></li>
-    <li><a href="publications.html">Publications</a></li>
-    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
-    <li><a href="funding.html">Funding</a></li>
-    <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
-    <li><a href="books.html">Books</a></li>
-    <li><a href="clinical-publications.html">Clinical Publications</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+  <div class="nav-container">
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <ul id="navMenu">
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+      <li><a href="funding.html">Funding</a></li>
+      <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="clinical-publications.html">Clinical Publications</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- Page Content -->
+<!-- Hero -->
+<section class="hero">
+  <h1>Contact</h1>
+</section>
+
+<!-- Content -->
 <div class="content">
-  <h1>Contact Prof. Gaetano Santulli</h1>
-  <p>If you have questions or would like to get in touch, please use the form below.</p>
+  <p style="text-align:center;">If you have questions or would like to get in touch, please use the form below.</p>
 
-  <!-- Contact Form -->
   <form>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" placeholder="John Doe">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="John Doe">
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="johndoe@example.com">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="johndoe@example.com">
 
-    <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject" placeholder="Question about publications">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" placeholder="Question about publications">
 
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" rows="6" placeholder="Write your message here..."></textarea>
+    <label for="message">Message</label>
+    <textarea id="message" rows="6" placeholder="Write your message here..."></textarea>
 
     <button type="submit">Send</button>
   </form>
 
-  <!-- Contact Info -->
-  <p style="margin-top:30px;">
-    <strong>Contact Info:</strong><br>
+  <p style="margin-top:30px; text-align:center;">
+    <strong>Contact Info</strong><br>
     Prof. Gaetano Santulli, MD, PhD, FAHA<br>
-    Medical Professor - Clinical (Full Professor - Cardiologist)<br>
-    City University of New York - School of Medicine, Manhattan, NY<br>
-    Email: <a href="mailto:gsantulli@example.com">gsantulli001@gmail.com</a><br>
+    Medical Professor – Clinical (Full Professor – Cardiologist)<br>
+    City University of New York – School of Medicine, Manhattan, NY<br>
+    Email: <a href="mailto:gsantulli001@gmail.com">gsantulli001@gmail.com</a>
   </p>
 
-  <!-- Donation Section -->
   <h2>Support Our Work / Donate</h2>
-  <p>If you would like to support our research and educational activities, you can donate via PayPal or Venmo:</p>
+  <p style="text-align:center;">You can support our research and educational activities via PayPal or Venmo.</p>
 
   <div class="donation">
-    <!-- PayPal -->
     <div>
       <a href="https://www.paypal.com/donate?hosted_button_id=MOCKID" target="_blank">
-        <img src="paypal.png" alt="PayPal QR Code">
+        <img src="paypal.png" alt="PayPal QR">
       </a>
       <p>PayPal</p>
     </div>
 
-    <!-- Venmo -->
     <div>
       <a href="https://venmo.com/MOCKUSERNAME" target="_blank">
-        <img src="venmo.png" alt="Venmo QR Code">
+        <img src="venmo.png" alt="Venmo QR">
       </a>
       <p>Venmo</p>
     </div>
   </div>
 </div>
 
-<!-- Footer -->
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>
