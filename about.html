@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Home – Prof. Gaetano Santulli</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Prof. Gaetano Santulli</title>
 
 <style>
 /* -------------------------
-   Reset & base styling
+   Base styling
 ------------------------- */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.7;
   background-color: #000000;
   color: #eaeaea;
 }
@@ -35,10 +36,11 @@ nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav li {
-  margin-right: 22px;
+  margin: 6px 15px;
 }
 
 nav a {
@@ -58,7 +60,7 @@ nav a:hover {
 ------------------------- */
 .hero {
   text-align: center;
-  margin: 50px 0 30px;
+  margin: 40px 0 20px;
 }
 
 .hero img {
@@ -69,11 +71,11 @@ nav a:hover {
 }
 
 /* -------------------------
-   Page header / welcome
+   Page header
 ------------------------- */
 .header {
   text-align: center;
-  margin: 40px 0 30px;
+  margin: 40px 0 20px;
 }
 
 .header h1 {
@@ -91,8 +93,8 @@ nav a:hover {
    Content sections
 ------------------------- */
 .content {
-  max-width: 900px;
-  margin: 0 auto 80px;
+  max-width: 1000px;
+  margin: 0 auto 60px;
   padding: 0 24px;
 }
 
@@ -121,6 +123,70 @@ footer {
   background-color: #00755E;
   color: #e6fff8;
   font-size: 14px;
+  margin-top: 40px;
+}
+
+/* -------------------------
+   Responsive: Tablet
+------------------------- */
+@media (max-width: 1024px) and (min-width: 600px) {
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .header p {
+    font-size: 16px;
+  }
+
+  .section h2 {
+    font-size: 20px;
+  }
+
+  .section p {
+    font-size: 15px;
+  }
+
+  .hero img {
+    max-width: 90%;
+  }
+
+  nav ul {
+    justify-content: flex-start;
+  }
+}
+
+/* -------------------------
+   Responsive: Mobile / iPhone
+------------------------- */
+@media (max-width: 599px) {
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .section h2 {
+    font-size: 18px;
+  }
+
+  .section p {
+    font-size: 14px;
+  }
+
+  .hero img {
+    max-width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin: 8px 0;
+  }
 }
 </style>
 </head>
@@ -130,6 +196,7 @@ footer {
 <!-- Navigation Bar -->
 <nav>
   <ul>
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
@@ -147,20 +214,18 @@ footer {
   <img src="hero.jpg" alt="Lab of Prof. Gaetano Santulli">
 </div>
 
-<!-- Welcome Header -->
+<!-- Page Header -->
 <div class="header">
-  <h1>Welcome to the Santulli Lab</h1>
-  <p></p>
+  <h1>Welcome to the Lab of Prof. Gaetano Santulli</h1>
+  <p>Integrating basic science, translational research, and clinical insight</p>
 </div>
 
-<!-- About Sections -->
+<!-- Main Content -->
 <div class="content">
-
   <div class="section">
     <h2>Mission</h2>
     <p>
-      Prof. Gaetano Santulli, MD, PhD, FAHA, is full Professor of Cardiology.
-      The mission of the Santulli lab is to advance the understanding of cardiovascular
+      The mission of the laboratory is to advance the understanding of cardiovascular
       and metabolic diseases through rigorous mechanistic research and clinically
       relevant translational approaches. By integrating molecular biology,
       physiology, and patient-oriented investigation, the lab aims to identify
@@ -200,7 +265,6 @@ footer {
       and public health.
     </p>
   </div>
-
 </div>
 
 <!-- Footer -->
