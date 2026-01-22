@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Awards & Honors - Prof. Gaetano Santulli</title>
 
 <style>
@@ -35,10 +36,11 @@ nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav li {
-  margin-right: 22px;
+  margin: 6px 15px;
 }
 
 nav a {
@@ -50,7 +52,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #d0f0e8; /* subtle mint hover */
+  color: #d0f0e8;
 }
 
 /* -------------------------
@@ -66,11 +68,13 @@ nav a:hover {
   color: #ffffff;
   margin-bottom: 20px;
   text-align: center;
+  font-size: 32px;
 }
 
 .content h2 {
   color: #36d1dc;
   margin-top: 40px;
+  font-size: 24px;
 }
 
 .content ul {
@@ -79,6 +83,7 @@ nav a:hover {
 
 .content li {
   margin-bottom: 12px;
+  font-size: 16px;
 }
 
 .content strong.title {
@@ -111,6 +116,60 @@ footer {
   margin-top: 60px;
   font-size: 14px;
 }
+
+/* -------------------------
+   Responsive: Tablet
+------------------------- */
+@media (max-width: 1024px) and (min-width: 600px) {
+  .content {
+    padding: 0 16px;
+  }
+
+  .content h1 {
+    font-size: 28px;
+  }
+
+  .content h2 {
+    font-size: 22px;
+  }
+
+  .content li {
+    font-size: 15px;
+  }
+}
+
+/* -------------------------
+   Responsive: Mobile / iPhone
+------------------------- */
+@media (max-width: 599px) {
+  .content {
+    padding: 0 12px;
+    margin-top: 40px;
+  }
+
+  .content h1 {
+    font-size: 24px;
+  }
+
+  .content h2 {
+    font-size: 20px;
+    margin-top: 30px;
+  }
+
+  .content li {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin: 6px 0;
+  }
+}
 </style>
 </head>
 
@@ -135,7 +194,7 @@ footer {
 <div class="content">
   <h1>Awards & Honors</h1>
 
-  <h2>Recognitions & Awards</h2>
+  <h2></h2>
   <ul>
     <li>2026: Elected Member of the American Society for Clinical Investigation</li>
     <li>2025: AHA Hypertension Award for Research Excellence</li>
