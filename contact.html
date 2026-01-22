@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Contact – Prof. Gaetano Santulli</title>
-
 <style>
 /* -------------------------
    Reset & base styling
@@ -18,7 +17,7 @@ body {
 }
 
 /* -------------------------
-   Navigation bar (About-style)
+   Navigation bar
 ------------------------- */
 nav {
   background-color: #00755E;
@@ -27,15 +26,6 @@ nav {
   top: 0;
   z-index: 100;
   border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 }
 
 nav ul {
@@ -48,7 +38,7 @@ nav ul {
 }
 
 nav li {
-  margin: 0 14px;
+  margin-right: 22px;
 }
 
 nav a {
@@ -63,65 +53,49 @@ nav a:hover {
   color: #d0f0e8;
 }
 
-/* Hamburger */
-.menu-toggle {
+/* Hamburger menu for mobile */
+.hamburger {
   display: none;
-  font-size: 26px;
-  color: #ffffff;
   cursor: pointer;
+  color: #ffffff;
+  font-size: 24px;
   position: absolute;
-  right: 0;
+  right: 20px;
+  top: 12px;
 }
 
-/* Mobile */
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: block;
-  }
-
+@media (max-width: 600px) {
   nav ul {
-    display: none;
     flex-direction: column;
-    width: 100%;
-    margin-top: 12px;
-    background-color: #00755E;
+    display: none;
   }
-
-  nav ul.show {
+  nav ul.active {
     display: flex;
   }
-
   nav li {
     margin: 10px 0;
-    text-align: center;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav a {
+    font-size: 16px;
   }
 }
 
 /* -------------------------
-   Hero section (About-style)
+   Hero image
 ------------------------- */
 .hero {
-  background: url("hero.jpg") center/cover no-repeat;
-  height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-}
-
-.hero h1 {
-  position: relative;
-  color: #ffffff;
-  font-size: 40px;
-  z-index: 1;
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 40px;
 }
 
 /* -------------------------
@@ -129,14 +103,14 @@ nav a:hover {
 ------------------------- */
 .content {
   max-width: 900px;
-  margin: 60px auto;
+  margin: 0 auto 60px;
   padding: 0 24px;
 }
 
-.content h2 {
+.content h1, .content h2 {
   color: #ffffff;
-  margin-bottom: 20px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .content p {
@@ -154,8 +128,7 @@ form label {
   font-weight: bold;
 }
 
-form input,
-form textarea {
+form input, form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -163,15 +136,14 @@ form textarea {
   border: none;
   background-color: #111111;
   color: #eaeaea;
+  transition: box-shadow 0.3s, border 0.3s;
 }
 
-form input::placeholder,
-form textarea::placeholder {
+form input::placeholder, form textarea::placeholder {
   color: #888888;
 }
 
-form input:focus,
-form textarea:focus {
+form input:focus, form textarea:focus {
   outline: none;
   box-shadow: 0 0 12px #36d1dc;
   border: 1px solid #36d1dc;
@@ -188,37 +160,23 @@ form button {
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-form button:hover {
+form button:hover, form button:focus {
   background-color: #5b86e5;
-  box-shadow: 0 0 15px #36d1dc;
+  box-shadow: 0 0 15px #36d1dc, 0 4px 10px rgba(54, 209, 220, 0.5);
 }
 
 /* -------------------------
-   Donation Section
+   Links
 ------------------------- */
-.donation {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 30px;
+a {
+  color: #5b86e5;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-.donation div {
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.donation div:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255,255,255,0.2);
-}
-
-.donation img {
-  width: 150px;
-  height: 150px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+a:hover {
+  color: #d0f0e8;
+  text-decoration: underline;
 }
 
 /* -------------------------
@@ -237,84 +195,79 @@ footer {
 
 <body>
 
-<!-- Navigation -->
+<!-- Navigation Bar -->
 <nav>
-  <div class="nav-container">
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-    <ul id="navMenu">
-      <li><a href="about.html">About</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="areas-of-interest.html">Areas of Interests</a></li>
-      <li><a href="funding.html">Funding</a></li>
-      <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
-      <li><a href="books.html">Books</a></li>
-      <li><a href="clinical-publications.html">Clinical Publications</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <ul id="nav-menu">
+    <li><a href="about.html">About</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+    <li><a href="funding.html">Funding</a></li>
+    <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="clinical-publications.html">Clinical Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <h1>Contact</h1>
-</section>
+<!-- Hero Image -->
+<img src="hero.jpg" alt="Hero Image" class="hero">
 
-<!-- Content -->
+<!-- Page Content -->
 <div class="content">
-  <p style="text-align:center;">If you have questions or would like to get in touch, please use the form below.</p>
+  <h1>Contact Prof. Gaetano Santulli</h1>
+  <p>If you have questions or would like to get in touch, please use the form below.</p>
 
-  <form>
-    <label for="name">Name</label>
-    <input type="text" id="name" placeholder="John Doe">
+  <!-- Contact Form -->
+  <form id="contact-form" onsubmit="sendEmail(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="John Doe" required>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="johndoe@example.com">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="johndoe@example.com" required>
 
-    <label for="subject">Subject</label>
-    <input type="text" id="subject" placeholder="Question about publications">
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" placeholder="Question about publications" required>
 
-    <label for="message">Message</label>
-    <textarea id="message" rows="6" placeholder="Write your message here..."></textarea>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
 
     <button type="submit">Send</button>
   </form>
 
-  <p style="margin-top:30px; text-align:center;">
-    <strong>Contact Info</strong><br>
+  <!-- Contact Info -->
+  <p style="margin-top:30px;">
+    <strong>Contact Info:</strong><br>
     Prof. Gaetano Santulli, MD, PhD, FAHA<br>
-    Medical Professor – Clinical (Full Professor – Cardiologist)<br>
-    City University of New York – School of Medicine, Manhattan, NY<br>
+    Medical Professor - Clinical (Full Professor - Cardiologist)<br>
+    City University of New York - School of Medicine, Manhattan, NY<br>
     Email: <a href="mailto:gsantulli001@gmail.com">gsantulli001@gmail.com</a>
   </p>
-
-  <h2>Support Our Work / Donate</h2>
-  <p style="text-align:center;">You can support our research and educational activities via PayPal or Venmo.</p>
-
-  <div class="donation">
-    <div>
-      <a href="https://www.paypal.com/donate?hosted_button_id=MOCKID" target="_blank">
-        <img src="paypal.png" alt="PayPal QR">
-      </a>
-      <p>PayPal</p>
-    </div>
-
-    <div>
-      <a href="https://venmo.com/MOCKUSERNAME" target="_blank">
-        <img src="venmo.png" alt="Venmo QR">
-      </a>
-      <p>Venmo</p>
-    </div>
-  </div>
 </div>
 
+<!-- Footer -->
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
 
 <script>
+/* Hamburger menu toggle */
 function toggleMenu() {
-  document.getElementById("navMenu").classList.toggle("show");
+  document.getElementById('nav-menu').classList.toggle('active');
+}
+
+/* Form sends email using mailto: */
+function sendEmail(event) {
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const subject = document.getElementById("subject").value;
+  const message = document.getElementById("message").value;
+
+  const mailtoLink = `mailto:gsantulli001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
+  
+  window.location.href = mailtoLink;
 }
 </script>
 
