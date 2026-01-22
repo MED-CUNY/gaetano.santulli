@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact – Prof. Gaetano Santulli</title>
+
 <style>
 /* -------------------------
    Reset & base styling
@@ -53,7 +55,7 @@ nav a:hover {
   color: #d0f0e8;
 }
 
-/* Hamburger menu for mobile */
+/* Hamburger menu */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -80,7 +82,6 @@ nav a:hover {
   }
 }
 
-/* Tablets */
 @media (min-width: 601px) and (max-width: 1024px) {
   nav a {
     font-size: 16px;
@@ -88,7 +89,7 @@ nav a:hover {
 }
 
 /* -------------------------
-   Hero image
+   Hero Image
 ------------------------- */
 .hero {
   width: 100%;
@@ -166,6 +167,34 @@ form button:hover, form button:focus {
 }
 
 /* -------------------------
+   Donation Section
+------------------------- */
+.donation {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.donation div {
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.donation div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+}
+
+.donation img {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* -------------------------
    Links
 ------------------------- */
 a {
@@ -212,26 +241,27 @@ footer {
 </nav>
 
 <!-- Hero Image -->
-<img src="hero_contact.jpg" alt="Hero Image" class="hero">
+<img src="hero.jpeg" alt="Hero Image" class="hero">
 
 <!-- Page Content -->
 <div class="content">
+
   <h1>Contact Prof. Gaetano Santulli</h1>
   <p>If you have questions or would like to get in touch, please use the form below.</p>
 
   <!-- Contact Form -->
-  <form id="contact-form" onsubmit="sendEmail(event)">
+  <form>
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" placeholder="John Doe" required>
+    <input type="text" id="name" name="name" placeholder="John Doe">
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="johndoe@example.com" required>
+    <input type="email" id="email" name="email" placeholder="johndoe@example.com">
 
     <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject" placeholder="Question about publications" required>
+    <input type="text" id="subject" name="subject" placeholder="Question about publications">
 
     <label for="message">Message:</label>
-    <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+    <textarea id="message" name="message" rows="6" placeholder="Write your message here..."></textarea>
 
     <button type="submit">Send</button>
   </form>
@@ -242,8 +272,31 @@ footer {
     Prof. Gaetano Santulli, MD, PhD, FAHA<br>
     Medical Professor - Clinical (Full Professor - Cardiologist)<br>
     City University of New York - School of Medicine, Manhattan, NY<br>
-    Email: <a href="mailto:gsantulli001@gmail.com">gsantulli001@gmail.com</a>
+    Email: <a href="mailto:gsantulli001@gmail.com">gsantulli001@gmail.com</a><br>
   </p>
+
+  <!-- Donation Section -->
+  <h2>Support Our Work / Donate</h2>
+  <p>If you would like to support our research and educational activities, you can donate via PayPal or Venmo:</p>
+
+  <div class="donation">
+    <!-- PayPal -->
+    <div>
+      <a href="https://www.paypal.com/donate?hosted_button_id=MOCKID" target="_blank">
+        <img src="paypal.png" alt="PayPal QR Code">
+      </a>
+      <p>PayPal</p>
+    </div>
+
+    <!-- Venmo -->
+    <div>
+      <a href="https://venmo.com/MOCKUSERNAME" target="_blank">
+        <img src="venmo.png" alt="Venmo QR Code">
+      </a>
+      <p>Venmo</p>
+    </div>
+  </div>
+
 </div>
 
 <!-- Footer -->
@@ -252,22 +305,8 @@ footer {
 </footer>
 
 <script>
-/* Hamburger menu toggle */
 function toggleMenu() {
   document.getElementById('nav-menu').classList.toggle('active');
-}
-
-/* Form sends email using mailto: */
-function sendEmail(event) {
-  event.preventDefault();
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const subject = document.getElementById("subject").value;
-  const message = document.getElementById("message").value;
-
-  const mailtoLink = `mailto:gsantulli001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
-  
-  window.location.href = mailtoLink;
 }
 </script>
 
