@@ -2,28 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Publications of Prof. Gaetano Santulli</title>
+<title>Publications – Prof. Gaetano Santulli</title>
 
 <style>
+/* -------------------------
+   Base styling
+------------------------- */
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
-  padding-left: 40px;
+  margin: 0;
+  padding: 0;
   line-height: 1.6;
   background-color: #000000;
   color: #eaeaea;
 }
 
 /* -------------------------
-   Navigation Bar
+   Navigation bar
 ------------------------- */
 nav {
-  background-color: #00755E;
+  background-color: #00755E; /* match other pages */
   padding: 12px 24px;
   position: sticky;
   top: 0;
   z-index: 100;
-  margin-bottom: 30px;
   border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
@@ -52,24 +54,29 @@ nav a:hover {
 }
 
 /* -------------------------
-   Publications styling
+   Page content
 ------------------------- */
-p {
-  margin-bottom: 15px;
+.content {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 24px;
 }
 
-a.pub-link {
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+a {
   color: #36d1dc;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
-a.pub-link:hover {
+a:hover {
+  color: #5b86e5;
   text-decoration: underline;
-}
-
-h2 {
-  color: #36d1dc;
-  margin-top: 40px;
 }
 
 ul {
@@ -78,7 +85,7 @@ ul {
 }
 
 li {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   transition: transform 0.2s;
 }
 
@@ -86,60 +93,166 @@ li:hover {
   transform: scale(1.02);
 }
 
+strong.journal {
+  color: #36d1dc;
+}
+
+u {
+  text-decoration: underline;
+}
+
 /* -------------------------
-   Page Counter
+   Page counter
 ------------------------- */
 .page-counter {
+  margin-top: 50px;
+  padding: 15px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
   color: white;
   background: linear-gradient(90deg, #36d1dc, #5b86e5);
-  padding: 15px;
   border-radius: 10px;
-  margin-top: 40px;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  margin-top: 60px;
+  font-size: 14px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Navigation Bar -->
+<!-- Navigation -->
 <nav>
   <ul>
-    <li><a href="about.html">About</a></li>
+    <li><a href="index.html">Home</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
-    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+    <li><a href="clinical-publications.html">Clinical Publications</a></li>
+    <li><a href="areas-of-interest.html">Areas of Interest</a></li>
     <li><a href="funding.html">Funding</a></li>
     <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
     <li><a href="patents.html">Patents</a></li>
     <li><a href="books.html">Books</a></li>
-    <li><a href="clinical-publications.html">Clinical Publications</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<p style="color:#36d1dc; font-weight:bold; font-size:18px;">
-  Peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
-</p>
+<div class="content">
+  <h1>Peer-reviewed Publications</h1>
+  <p>All peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA are listed below.</p>
 
-<div id="publications">
-  <p>Loading publications…</p>
+  <div id="publications">
+    <p>Loading publications...</p>
+  </div>
+
+  <div class="page-counter">
+    Page Visits: <span id="counter">0</span>
+  </div>
 </div>
 
-<div class="page-counter" id="page-counter">
-  Page Visits: <span id="counter">0</span>
-</div>
+<footer>
+  &copy; 2026 Prof. Gaetano Santulli
+</footer>
 
 <script>
-// ---------------------------
-// Page Counter (LocalStorage)
-// ---------------------------
-let count = localStorage.getItem('pageCounter') || 5432;
+/* ---------------------------
+   Counter
+--------------------------- */
+let count = localStorage.getItem("pageCounter") || 5400;
 count++;
-localStorage.setItem('pageCounter', count);
-document.getElementById('counter').textContent = count;
+localStorage.setItem("pageCounter", count);
+document.getElementById("counter").textContent = count;
+
+/* ---------------------------
+   PubMed fetch
+--------------------------- */
+const query =
+"((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
+
+const replacements = {
+ "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
+ "ISCIENCE":"iSCIENCE",
+ "HYPERTENSION (DALLAS, TEX. : 1979)":"HYPERTENSION",
+ "CELL CYCLE (GEORGETOWN, TEX.)":"CELL CYCLE",
+ "CARDIOVASCULAR DIABETOLOGY. ENDOCRINOLOGY REPORTS":"CARDIOVASCULAR DIABETOLOGY - ENDOCRINOLOGY REPORTS",
+ "NPJ METABOLIC HEALTH AND DISEASE":"NPJ METABOLIC HEALTH AND DISEASE (NATURE PORTFOLIO JOURNAL)",
+ "HYPERTENSION RESEARCH : OFFICIAL JOURNAL OF THE JAPANESE SOCIETY OF HYPERTENSION":"HYPERTENSION RESEARCH",
+ "CELLULAR AND MOLECULAR LIFE SCIENCES : CMLS":"CELLULAR AND MOLECULAR LIFE SCIENCES",
+ "MOLECULAR MEDICINE (CAMBRIDGE, MASS.)":"MOLECULAR MEDICINE",
+ "THE LANCET. HEALTHY LONGEVITY":"THE LANCET HEALTHY LONGEVITY",
+ "THE LANCET. DIABETES & ENDOCRINOLOGY":"THE LANCET DIABETES & ENDOCRINOLOGY",
+ "INTERNATIONAL JOURNAL OF CARDIOLOGY. HEART & VASCULATURE":"INTERNATIONAL JOURNAL OF CARDIOLOGY - HEART & VASCULATURE",
+ "ERJ OPEN RESEARCH":"EUROPEAN RESPIRATORY SOCIETY OPEN RESEARCH",
+ "EUROPEAN HEART JOURNAL. CARDIOVASCULAR PHARMACOTHERAPY":"EUROPEAN HEART JOURNAL - CARDIOVASCULAR PHARMACOTHERAPY",
+ "JOURNAL OF ALZHEIMER'S DISEASE : JAD":"JOURNAL OF ALZHEIMER'S DISEASE",
+ "ANTIOXIDANTS (BASEL, SWITZERLAND)":"ANTIOXIDANTS",
+ "THE JOURNAL OF HEART AND LUNG TRANSPLANTATION : THE OFFICIAL PUBLICATION OF THE INTERNATIONAL SOCIETY FOR HEART TRANSPLANTATION":"JOURNAL OF HEART AND LUNG TRANSPLANTATION",
+ "BIOENGINEERING (BASEL, SWITZERLAND)":"BIOENGINEERING",
+ "PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA":"PNAS USA",
+ "JOURNAL OF CLINICAL HYPERTENSION (GREENWICH, CONN.)":"JOURNAL OF CLINICAL HYPERTENSION",
+ "ACTA PHYSIOLOGICA (OXFORD, ENGLAND)":"ACTA PHYSIOLOGICA",
+ "CRITICAL CARE (LONDON, ENGLAND)":"CRITICAL CARE",
+ "IMMUNITY & AGEING : I & A":"IMMUNITY & AGEING",
+ "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
+};
+
+async function fetchPubMed() {
+  const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
+  const s = await (await fetch(esearch)).json();
+
+  const webenv = s.esearchresult.webenv;
+  const key = s.esearchresult.querykey;
+  const total = parseInt(s.esearchresult.count);
+
+  let html = "<ul>";
+  const step = 200;
+
+  for (let i = 0; i < total; i += step) {
+    const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
+    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
+
+    xml.querySelectorAll("PubmedArticle").forEach(a => {
+      const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
+      if (journalRaw.includes("RESEARCH SQUARE")) return;
+
+      let journal = replacements[journalRaw] || journalRaw;
+      const pmid = a.querySelector("PMID")?.textContent;
+      const title = a.querySelector("ArticleTitle")?.textContent || "";
+      const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+
+      const authors = [...a.querySelectorAll("Author")]
+        .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
+        .join(", ")
+        .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
+
+      const doi = [...a.querySelectorAll("ArticleId")]
+        .find(x => x.getAttribute("IdType") === "doi")?.textContent;
+
+      html += `
+      <li>
+        <strong><a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a></strong><br>
+        <em>${authors}</em><br>
+        <strong class="journal">${journal}</strong>. ${year}.
+        ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
+      </li>`;
+    });
+  }
+
+  html += "</ul>";
+  document.getElementById("publications").innerHTML = html;
+}
+
+fetchPubMed();
 </script>
 
 </body>
