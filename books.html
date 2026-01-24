@@ -14,8 +14,8 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-color: #0B0B0B; /* background */
-  color: #B8BDC7;            /* authors */
+  background-color: #0B0B0B; /* page background */
+  color: #B8BDC7;            /* default text: authors */
 }
 
 /* -------------------------
@@ -138,7 +138,8 @@ nav a:hover {
 }
 
 .content li {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  line-height: 1.4;
   transition: transform 0.2s;
 }
 
@@ -150,12 +151,12 @@ nav a:hover {
    Books & Chapters Styling
 ------------------------- */
 strong.book-title {
-  color: #F5F5F5; /* book title main list */
+  color: #F5F5F5; /* main book title */
   transition: color 0.3s;
 }
 
 strong.book-title:hover {
-  color: #8EC9FF; /* book title hover */
+  color: #8EC9FF; /* hover for books */
 }
 
 /* Chapter titles */
@@ -165,7 +166,7 @@ ul#chapters-list strong.book-title {
 }
 
 ul#chapters-list strong.book-title:hover {
-  color: #81D8F7; /* chapter title hover */
+  color: #81D8F7; /* hover for chapters */
 }
 
 /* Publisher */
@@ -173,12 +174,35 @@ strong.publisher {
   color: #6FCF97; /* publisher */
 }
 
+/* Authors */
 em {
-  color: #B8BDC7; /* authors */
+  color: #B8BDC7;
 }
 
 u {
   text-decoration: underline;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #8EC9FF;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  font-size: 14px;
 }
 </style>
 </head>
@@ -209,7 +233,6 @@ u {
 <!-- Page Content -->
 <div class="content">
   <h1></h1>
-
   <p style="color:#36d1dc; font-weight:bold; font-size:18px;">
     Books and Book Chapters edited or authored by Prof. Gaetano Santulli
   </p>
@@ -217,7 +240,7 @@ u {
   <h2>Books</h2>
   <ul id="books-list"></ul>
 
-  <h2>Book Chapters</h2>
+  <h2>Book Chapters (Selection)</h2>
   <ul id="chapters-list"></ul>
 </div>
 
@@ -231,27 +254,31 @@ function toggleMenu() {
 }
 
 // ---------------------------
-// Books & Chapters Data
+// Books & Chapters Data with links
 // ---------------------------
 const books = [
-  ["Gaetano Santulli","ANGIOGENESIS: INSIGHTS FROM A SYSTEMATIC OVERVIEW","Nova Publishers Inc., New York, NY","2013","978-162618114-4"],
-  ["Gaetano Santulli","ADRENAL GLANDS: FROM PATHOPHYSIOLOGY TO CLINICAL PRACTICE","Nova Publishers Inc.","2015","978-1634835503"],
-  ["Gaetano Santulli","MICRORNA: FROM MOLECULAR BIOLOGY TO CLINICAL PRACTICE","Springer","2016","978-3319223797; 978-3319237299; 978-331922670-5"],
-  ["Gaetano Santulli","MITOCHONDRIAL DYNAMICS IN CARDIOVASCULAR MEDICINE","Springer-Nature","2017","978-3-319-55329-0"],
-  ["Gaetano Santulli","DIET AND METABOLIC DYSFUNCTION","MDPI","2017","978-3038423225; 978-3038423249"],
-  ["Gaetano Santulli","CARDIOVASCULAR DISEASE AND DIABETES: A JOURNEY FROM BENCH TO BEDSIDE","Frontiers","2019","978-2889459995"],
-  ["Gaetano Santulli","CARDIOVASCULAR DISEASE: FROM MOLECULAR MECHANISMS TO CLINICAL THERAPIES","MDPI","2021","978-3036509938"]
+  ["Gaetano Santulli", "<a href='https://www.amazon.com/Dietary-Supplements-Cardiovascular-Metabolic-Diseases/dp/3725812950' target='_blank'>Dietary Supplements in Cardiovascular and Metabolic Diseases.</a>", "MDPI", "2024", "978-3-7258-1295-0"],
+  ["Gaetano Santulli", "<u>Methods and Applications in Clinical and Translational Physiology.</u>", "Frontiers", "2023", "9782832520437"],
+  ["Gaetano Santulli", "<a href='https://www.mdpi.com/books/pdfview/book/269' target='_blank'>Diet and Metabolic Dysfunction</a>", "MDPI", "2017", "978-3038423225, 978-3038423249"],
+  ["Gaetano Santulli", "<a href='http://www.springer.com/us/book/9783319553290' target='_blank'>Mitochondrial dynamics in cardiovascular medicine</a>", "Springer-Nature", "2017", "978-3-319-55329-0"],
+  ["Gaetano Santulli", "<a href='http://www.springer.com/us/book/9783319226705' target='_blank'>microRNA: from molecular biology to clinical practice</a>", "Springer", "2016", "978-3319223797, 978-3319237299, 978-3-319-22670-5"],
+  ["Gaetano Santulli", "<a href='https://www.novapublishers.com/catalog/product_info.php?products_id=55812&osCsid=216c59cd0951c5e27f46f013d695f9b4' target='_blank'>Adrenal Glands: FROM PATHOPHYSIOLOGY TO CLINICAL PRACTICE.</a>", "Nova Publishers Inc.", "2015", "978-1634835503"],
+  ["Gaetano Santulli", "<a href='https://sites.einsteinmed.edu/santulli-lab/book-chapters#http://www.amazon.com/Angiogenesis-Insights-Systematic-Gaetano-Santulli/dp/1626181144' target='_blank'>ANGIOGENESIS: INSIGHTS FROM A SYSTEMATIC OVERVIEW</a>", "Nova Publishers Inc.", "2013", "978-1-62618-114-4"],
+  ["Gaetano Santulli", "<a href='https://www.amazon.com/Translational-Aspects-Cardiovascular-Biology-Bedside/dp/3036575751' target='_blank'>Translational Aspects of Cardiovascular Biology: From Bench to Bedside.</a>", "MDPI", "2023", "978-3-0365-7575-9"],
+  ["Gaetano Santulli", "<a href='https://www.amazon.com/Influence-Lifestyle-Factors-Management-Diabetes/dp/2832533455' target='_blank'>Influence of lifestyle factors in the management of diabetes mellitus.</a>", "Apple Books - Frontiers Media", "2023", "978-2-8325-3345-1; DOI 10.3389/978-2-8325-3345-1"],
+  ["Gaetano Santulli", "<a href='https://www.amazon.com/Cardiovascular-Disease-Molecular-Mechanisms-Clinical/dp/3036509938' target='_blank'>Cardiovascular Disease: From Molecular Mechanisms to Clinical Therapies.</a>", "MDPI", "2021", "978-3-0365-0993-8"],
+  ["Gaetano Santulli", "<a href='https://www.amazon.com/Cardiovascular-Disease-Diabetes-Journey-Bench/dp/2889459995' target='_blank'>Cardiovascular Disease and Diabetes: A Journey from Bench to Bedside.</a>", "Frontiers", "2019", "9782889459995"]
 ];
 
 const chapters = [
-  ["Gaetano Santulli","SYMPATHETIC NERVOUS SYSTEM SIGNALING IN HEART FAILURE AND CARDIAC AGING","Pathophysiology and Pharmacotherapy of Cardiovascular Disease. Springer","2015"],
-  ["Gaetano Santulli","THE ADRENERGIC SYSTEM IN CARDIOVASCULAR METABOLISM AND AGING","The Cardiovascular Adrenergic System. Springer","2015"],
-  ["Gaetano Santulli et al.","ESSENTIAL ROLES OF INTRACELLULAR CALCIUM RELEASE CHANNELS","50th Anniversary of Calcium Channel Research: Biomedical Perspectives. Bentham Science","2015"],
-  ["Michele Ciccarelli, Daniela Sorriento, Enrico Coscioni, Guido Iaccarino, Gaetano Santulli","ADRENERGIC RECEPTORS","Endocrinology of the Heart in Health and Disease. Elsevier","2016"],
-  ["Jessica Gambardella, Bruno Trimarco, Guido Iaccarino, Gaetano Santulli","NEW INSIGHTS IN CARDIAC CALCIUM HANDLING AND EXCITATION–CONTRACTION COUPLING","Heart Failure: From Research to Clinical Practice. Springer-Nature","2017"],
-  ["Daniela Sorriento, Gaetano Santulli et al.","THE N-TERMINAL DOMAIN OF GRK5 INHIBITS CARDIAC HYPERTROPHY THROUGH THE REGULATION OF CA2+/CALMODULIN DEPENDENT TRANSCRIPTION FACTORS","Calcium Signaling in Human Health and Diseases. MDPI","2018"],
-  ["Gaetano Santulli, Daniel Lewis, Andrew Marks, Joachim Frank","RYANODINE RECEPTOR STRUCTURE AND FUNCTION IN HEALTH AND DISEASE","Membrane-bound Macromolecular Protein Complexes: Structure and Function. Springer-Nature","2018"],
-  ["Stanislovas S. Jankauskas et al.","MICRORNA AND DIABETES","MicroRNA: From Bench to Bedside. Elsevier","2022"]
+  ["Gaetano Santulli, et al.", "<a href='https://shop.elsevier.com/books/microrna/xiao/978-0-323-89774-7' target='_blank'>microRNAs in diabetes</a>", "MicroRNA: From Bench to Bedside", "Elsevier", 2022],
+  ["Gaetano Santulli, Daniel Lewis, Andrew Marks, Joachim Frank", "<a href='https://www.springer.com/gp/book/9789811077562' target='_blank'>Ryanodine receptor structure and function in health and disease</a>", "Membrane-bound Macromolecular Protein Complexes: Structure and Function", "Springer-Nature", 2018],
+  ["Daniela Sorriento, Gaetano Santulli, et al.", "<a href='https://www.researchgate.net/publication/323654822_The_Amino-Terminal_Domain_of_GRK5_Inhibits_Cardiac_Hypertrophy_through_the_Regulation_of_Calcium-Calmodulin_Dependent_Transcription_Factors' target='_blank'>The Amino-Terminal Domain of GRK5 Inhibits Cardiac Hypertrophy through the Regulation of Calcium/Calmodulin Dependent Transcription Factors</a>", "Calcium Signaling in Human Health and Diseases", "MDPI", 2018],
+  ["Jessica Gambardella, Bruno Trimarco, Guido Iaccarino, Gaetano Santulli", "<a href='https://www.researchgate.net/publication/320062765_New_Insights_in_Cardiac_Calcium_Handling_and_Excitation-Contraction_Coupling' target='_blank'>New Insights in Cardiac Calcium Handling and Excitation-Contraction Coupling</a>", "Heart Failure: From Research to Clinical Practice", "Springer-Nature", 2017],
+  ["M. Ciccarelli, D. Sorriento, E. Coscioni, G. Iaccarino, Gaetano Santulli", "<a href='https://www.researchgate.net/publication/307856141_Adrenergic_Receptors' target='_blank'>Adrenergic Receptors</a>", "Endocrinology of the heart in health and disease", "Elsevier", 2016],
+  ["Gaetano Santulli, et al.", "<a href='http://benthamscience.com/journal/abstracts.php?journalID=cmp&articleID=131131' target='_blank'>Essential roles of intracellular calcium release channels in muscle, brain and metabolism.</a>", "50th Anniversary of Calcium Channel Research: Biomedical Perspectives", "Bentham Science", 2015],
+  ["Gaetano Santulli", "<a href='http://link.springer.com/chapter/10.1007%2F978-3-319-13680-6_6' target='_blank'>The adrenergic system in cardiovascular metabolism and aging</a>", "The cardiovascular adrenergic system", "Springer", 2018],
+  ["Gaetano Santulli", "<a href='http://link.springer.com/chapter/10.1007%2F978-3-319-15961-4_5' target='_blank'>Sympathetic Nervous System Signaling in Heart Failure and Cardiac Aging</a>", "Pathophysiology and Pharmacotherapy of Cardiovascular Disease", "Springer", 2015]
 ];
 
 function renderBooks() {
@@ -277,7 +304,8 @@ function renderChapters() {
     li.innerHTML = `
       <strong class="book-title">${c[1]}</strong><br>
       <em>${authors}</em><br>
-      <strong class="publisher">${c[2]}</strong>, ${c[3]}
+      <strong class="publisher">${c[3]}</strong>, ${c[4]}<br>
+      In: <em>${c[2]}</em>
     `;
     list.appendChild(li);
   });
