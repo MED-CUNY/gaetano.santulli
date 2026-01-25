@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications – Prof. Gaetano Santulli</title>
 
 <style>
@@ -13,12 +14,12 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-color: #0B0B0B; /* near-black charcoal */
-  color: #B8BDC7;            /* authors gray */
+  background-color: #0B0B0B;
+  color: #B8BDC7;
 }
 
 /* -------------------------
-   Navigation bar (UNCHANGED)
+   Navigation bar (IDENTICAL TO BOOKS PAGE)
 ------------------------- */
 nav {
   background-color: #00755E;
@@ -47,14 +48,13 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
-  transition: color 0.3s ease;
 }
 
 nav a:hover {
   color: #d0f0e8;
 }
 
-/* Hamburger menu */
+/* Hamburger */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -81,7 +81,6 @@ nav a:hover {
   }
 }
 
-/* Tablets */
 @media (min-width: 601px) and (max-width: 1024px) {
   nav a {
     font-size: 16px;
@@ -100,35 +99,33 @@ nav a:hover {
 .content h1 {
   text-align: center;
   margin-bottom: 40px;
-  color: #F5F5F5; /* title off-white */
+  color: #F5F5F5;
 }
 
 .content p {
   margin-bottom: 20px;
 }
 
-/* Links: title + DOI */
+/* Links */
 .content a {
-  color: #F5F5F5; /* title default */
+  color: #F5F5F5;
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .content a:hover {
-  color: #8EC9FF; /* title hover */
+  color: #8EC9FF;
   text-decoration: underline;
 }
 
-/* DOI links specifically */
 .content li a[href^="https://doi.org"] {
-  color: #4DD0E1; /* DOI cyan */
+  color: #4DD0E1;
 }
 
 .content li a[href^="https://doi.org"]:hover {
-  color: #7FE9FF; /* DOI hover */
+  color: #7FE9FF;
 }
 
-/* Publication list */
 .content ul {
   list-style: none;
   padding-left: 0;
@@ -143,18 +140,16 @@ nav a:hover {
   transform: scale(1.02);
 }
 
-/* Journal */
 strong.journal {
-  color: #6FCF97; /* emerald */
+  color: #6FCF97;
 }
 
-/* Underline for highlighted author */
 u {
   text-decoration: underline;
 }
 
 /* -------------------------
-   Page counter
+   Counter
 ------------------------- */
 .page-counter {
   margin-top: 50px;
@@ -201,7 +196,6 @@ footer {
 
 <div class="content">
   <h1>Publications</h1>
-  <p></p>
 
   <div id="publications">
     <p>Loading publications...</p>
@@ -217,22 +211,17 @@ footer {
 </footer>
 
 <script>
-/* Mobile menu toggle */
 function toggleMenu() {
   document.getElementById('nav-menu').classList.toggle('active');
 }
 
-/* ---------------------------
-   Counter
---------------------------- */
+/* Counter */
 let count = localStorage.getItem("pageCounter") || 5400;
 count++;
 localStorage.setItem("pageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* ---------------------------
-   PubMed fetch
---------------------------- */
+/* PubMed */
 const query =
 "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
@@ -282,7 +271,7 @@ async function fetchPubMed() {
       const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
       if (journalRaw.includes("RESEARCH SQUARE")) return;
 
-      let journal = replacements[journalRaw] || journalRaw;
+      const journal = replacements[journalRaw] || journalRaw;
       const pmid = a.querySelector("PMID")?.textContent;
       const title = a.querySelector("ArticleTitle")?.textContent || "";
       const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
