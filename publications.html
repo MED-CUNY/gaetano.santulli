@@ -67,18 +67,18 @@ nav a:hover { color: #d0f0e8; }
 .content li {
   margin-bottom: 22px;
   padding: 12px;
-  background-color: #111;
+  background-color: #111111;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(255,255,255,0.08);
-  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), background-color 0.3s, box-shadow 0.3s;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
   opacity: 0;
-  transform: translateY(25px);
   animation: fadeInUp 0.8s ease-out forwards;
 }
+
 .content li:hover {
-  transform: scale(1.03) translateY(-3px) rotateX(1.5deg);
+  transform: scale(1.02);
   background-color: #1a1a1a;
-  box-shadow: 0 6px 15px rgba(255,255,255,0.2);
+  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
 }
 strong.journal { color: #6FCF97; }
 u { text-decoration: underline; }
