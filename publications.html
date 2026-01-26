@@ -14,7 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications – Prof. Gaetano Santulli</title>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <style>
 /* -------------------------
@@ -30,7 +29,7 @@ body {
 }
 
 /* -------------------------
-   Navigation bar
+   Navigation bar (IDENTICAL TO BOOKS PAGE)
 ------------------------- */
 nav {
   background-color: #00755E;
@@ -77,10 +76,25 @@ nav a:hover {
 }
 
 @media (max-width: 600px) {
-  nav ul { flex-direction: column; display: none; }
-  nav ul.active { display: flex; }
-  nav li { margin: 10px 0; }
-  .hamburger { display: block; }
+  nav ul {
+    flex-direction: column;
+    display: none;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav li {
+    margin: 10px 0;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav a {
+    font-size: 16px;
+  }
 }
 
 /* -------------------------
@@ -108,6 +122,7 @@ nav a:hover {
   margin-bottom: 20px;
 }
 
+/* Links */
 .content a {
   color: #F5F5F5;
   text-decoration: none;
@@ -135,6 +150,8 @@ nav a:hover {
 .content li {
   margin-bottom: 22px;
   transition: transform 0.2s;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .content li:hover {
@@ -158,7 +175,6 @@ u {
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(111,207,151,0.12), rgba(77,208,225,0.12));
   box-shadow: 0 0 25px rgba(111,207,151,0.25);
-  animation: fadeInUp 1s ease-out forwards;
 }
 
 .recent-box h2 {
@@ -174,11 +190,10 @@ u {
   padding: 18px;
   border-radius: 14px;
   background: rgba(0,0,0,0.35);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
-/* -------------------------
-   Animations
-------------------------- */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
@@ -187,12 +202,6 @@ u {
 @keyframes shimmer {
   from { background-position: 0% 50%; }
   to { background-position: 100% 50%; }
-}
-
-/* For PubMed publications */
-.publication-list li {
-  opacity: 0;
-  animation: fadeInUp 1s ease-out forwards;
 }
 
 /* -------------------------
@@ -304,7 +313,7 @@ count++;
 localStorage.setItem("pageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* PubMed query */
+/* PubMed */
 const query =
 "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
@@ -338,20 +347,20 @@ const replacements = {
 async function fetchPubMed() {
   const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
   const s = await (await fetch(esearch)).json();
+
   const webenv = s.esearchresult.webenv;
   const key = s.esearchresult.querykey;
   const total = parseInt(s.esearchresult.count);
 
-  let html = '<ul class="publication-list">';
-  let pubNumber = total;
+  let html = "<ul>";
+  let pubNumber = total;   // newest = highest number
   const step = 200;
-  let delay = 0; // animation stagger
 
-  for (let i = total - step; i >= 0; i -= step) {
+  for (let i = 0; i < total; i += step) {
     const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
     const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
 
-    [...xml.querySelectorAll("PubmedArticle")].reverse().forEach(a => {
+    xml.querySelectorAll("PubmedArticle").forEach(a => {
       const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
       if (journalRaw.includes("RESEARCH SQUARE")) return;
 
@@ -369,19 +378,34 @@ async function fetchPubMed() {
         .find(x => x.getAttribute("IdType") === "doi")?.textContent;
 
       html += `
-<li style="animation-delay:${delay}ms">
-<strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a></strong><br>
-<em>${authors}</em><br>
-<strong class="journal">${journal}</strong>. ${year}.
-${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
-</li>`;
-      delay += 80;
+      <li style="animation-delay:${(total-pubNumber)*0.02}s">
+        <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a></strong><br>
+        <em>${authors}</em><br>
+        <strong class="journal">${journal}</strong>. ${year}.
+        ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
+      </li>`;
+
       pubNumber--;
     });
   }
 
   html += "</ul>";
   document.getElementById("publications").innerHTML = html;
+  reconcileRecentWithPubMed();
+}
+
+function reconcileRecentWithPubMed() {
+  const pubmedTitles = [...document.querySelectorAll("#publications strong a")]
+    .map(x => x.textContent.toLowerCase());
+
+  document.querySelectorAll("#recent-list li").forEach(li => {
+    const key = li.dataset.title.toLowerCase();
+    if (pubmedTitles.some(t => t.includes(key))) li.remove();
+  });
+
+  if (!document.querySelector("#recent-list li")) {
+    document.getElementById("recent-box").style.display = "none";
+  }
 }
 
 fetchPubMed();
