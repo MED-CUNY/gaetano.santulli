@@ -18,7 +18,7 @@
 
 <style>
 /* =========================
-   RESET & BASE
+   BASE & RESET
 ========================= */
 body {
   font-family: Arial, sans-serif;
@@ -40,7 +40,6 @@ nav {
   z-index: 100;
   border-bottom: 1px solid rgba(255,255,255,0.2);
 }
-
 nav ul {
   list-style: none;
   margin: 0;
@@ -49,53 +48,24 @@ nav ul {
   flex-wrap: wrap;
   justify-content: center;
 }
-
-nav li {
-  margin-right: 22px;
-}
-
+nav li { margin-right: 22px; }
 nav a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
 }
+nav a:hover { color: #d0f0e8; }
 
-nav a:hover {
-  color: #d0f0e8;
-}
-
-.hamburger {
-  display: none;
-  cursor: pointer;
-  color: #fff;
-  font-size: 24px;
-  position: absolute;
-  right: 20px;
-  top: 12px;
-}
-
+/* Hamburger */
+.hamburger { display: none; cursor: pointer; color: #fff; font-size: 24px; position: absolute; right: 20px; top: 12px; }
 @media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    display: none;
-  }
-  nav ul.active {
-    display: flex;
-  }
-  nav li {
-    margin: 10px 0;
-  }
-  .hamburger {
-    display: block;
-  }
+  nav ul { flex-direction: column; display: none; }
+  nav ul.active { display: flex; }
+  nav li { margin: 10px 0; }
+  .hamburger { display: block; }
 }
-
-@media (min-width: 601px) and (max-width: 1024px) {
-  nav a {
-    font-size: 16px;
-  }
-}
+@media (min-width: 601px) and (max-width: 1024px) { nav a { font-size: 16px; } }
 
 /* =========================
    PAGE CONTENT
@@ -105,48 +75,26 @@ nav a:hover {
   margin: 60px auto;
   padding: 0 24px;
 }
-
 .content h1 {
   text-align: center;
   margin-bottom: 40px;
   color: #F5F5F5;
 }
-
 .content h2 {
   margin-top: 40px;
   margin-bottom: 25px;
   color: #F5F5F5;
 }
+.content p { margin-bottom: 20px; }
+.content a { color: #F5F5F5; text-decoration: none; transition: color 0.3s; }
+.content a:hover { color: #8EC9FF; text-decoration: underline; }
+.content li a[href^="https://doi.org"] { color: #4DD0E1; }
+.content li a[href^="https://doi.org"]:hover { color: #7FE9FF; }
+.content ul { list-style: none; padding-left: 0; }
 
-.content p {
-  margin-bottom: 20px;
-}
-
-.content a {
-  color: #F5F5F5;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.content a:hover {
-  color: #8EC9FF;
-  text-decoration: underline;
-}
-
-.content li a[href^="https://doi.org"] {
-  color: #4DD0E1;
-}
-
-.content li a[href^="https://doi.org"]:hover {
-  color: #7FE9FF;
-}
-
-.content ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-/* Hover animation */
+/* =========================
+   PUBLICATIONS LIST & HOVER
+========================= */
 .content li {
   margin-bottom: 22px;
   padding: 12px;
@@ -157,23 +105,16 @@ nav a:hover {
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
 }
-
 .content li:hover {
   transform: scale(1.02);
   background-color: #1a1a1a;
   box-shadow: 0 5px 12px rgba(255,255,255,0.15);
 }
-
-strong.journal {
-  color: #6FCF97;
-}
-
-u {
-  text-decoration: underline;
-}
+strong.journal { color: #6FCF97; }
+u { text-decoration: underline; }
 
 /* =========================
-   RECENT PAPERS
+   RECENT PAPERS BOX
 ========================= */
 .recent-box {
   margin: 40px 0 60px 0;
@@ -183,7 +124,6 @@ u {
   box-shadow: 0 0 25px rgba(111,207,151,0.25);
   animation: fadeInUp 1s ease-out forwards;
 }
-
 .recent-box h2 {
   text-align: center;
   font-size: 26px;
@@ -192,14 +132,12 @@ u {
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s infinite linear;
 }
-
 .recent-box li {
   padding: 18px;
   border-radius: 14px;
   background: rgba(0,0,0,0.35);
   transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
-
 .recent-box li:hover {
   transform: scale(1.02);
   background-color: #1a1a1a;
@@ -213,7 +151,6 @@ u {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
   margin: 50px 0;
   opacity: 0;
@@ -221,7 +158,6 @@ u {
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 0.2s;
 }
-
 .cover-box img {
   max-width: 100%;
   height: auto;
@@ -232,15 +168,8 @@ u {
 /* =========================
    ANIMATIONS
 ========================= */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(25px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes shimmer {
-  from { background-position: 0% 50%; }
-  to { background-position: 100% 50%; }
-}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
 /* =========================
    PAGE COUNTER
@@ -272,48 +201,14 @@ footer {
    PRINT-FRIENDLY
 ========================= */
 @media print {
-  body {
-    background: #ffffff;
-    color: #000000;
-    font-size: 11pt;
-  }
-
-  nav, .hamburger, .page-counter, footer {
-    display: none !important;
-  }
-
-  .content {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  h2 {
-    color: #000000;
-    page-break-after: avoid;
-  }
-
-  ul li {
-    background: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 6px 0 !important;
-    margin-bottom: 10px !important;
-  }
-
-  ul li::before {
-    display: none !important;
-  }
-
-  a {
-    color: #000000 !important;
-    text-decoration: none !important;
-  }
-
-  a::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-  }
+  body { background: #ffffff; color: #000000; font-size: 11pt; }
+  nav, .hero, .hamburger, .page-counter, footer { display: none !important; }
+  .content { max-width: 100%; margin: 0; padding: 0; }
+  h2 { color: #000000; page-break-after: avoid; }
+  ul.pub-list li { background: none; box-shadow: none; border-radius: 0; padding: 6px 0; margin-bottom: 10px; }
+  ul.pub-list li::before { display: none; }
+  a { color: #000000; text-decoration: none; }
+  a::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }
 </style>
 </head>
@@ -364,7 +259,7 @@ footer {
 </div>
 
 <div class="cover-box">
-<h2>Selection of Covers of our Best Papers</h2>
+<h2>Selection of Covers of our Best Papers!</h2>
 <img src="covers.png" alt="Covers of Journals where the Santulli Lab published">
 </div>
 
