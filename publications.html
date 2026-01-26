@@ -29,7 +29,7 @@ body {
 }
 
 /* -------------------------
-   Navigation bar (IDENTICAL TO BOOKS PAGE)
+   Navigation bar
 ------------------------- */
 nav {
   background-color: #00755E;
@@ -122,15 +122,30 @@ nav a:hover {
   margin-bottom: 20px;
 }
 
-.content a {
-  color: #F5F5F5;
-  text-decoration: none;
-  transition: color 0.3s;
+/* -------------------------
+   Publications list styling + hover effect
+------------------------- */
+#publications ul, #recent-list {
+  list-style: none;
+  padding-left: 0;
 }
 
-.content a:hover {
-  color: #8EC9FF;
-  text-decoration: underline;
+#publications li, #recent-list li {
+  margin-bottom: 22px;
+  padding: 12px;
+  background-color: #111111;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(255,255,255,0.08);
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+#publications li:hover, #recent-list li:hover {
+  transform: scale(1.02);
+  background-color: #1a1a1a;
+  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
 }
 
 strong.journal {
@@ -141,34 +156,27 @@ u {
   text-decoration: underline;
 }
 
-/* -------------------------
-   Hover + animation for PubMed list
-------------------------- */
-#publications ul {
-  list-style: none;
-  padding-left: 0;
+a {
+  color: #F5F5F5;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-#publications li {
-  margin-bottom: 22px;
-  padding: 12px;
-  background-color: #111111;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(255,255,255,0.08);
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeInUp 0.8s ease-out forwards;
+a:hover {
+  color: #8EC9FF;
+  text-decoration: underline;
 }
 
-#publications li:hover {
-  transform: scale(1.02);
-  background-color: #1a1a1a;
-  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
+li a[href^="https://doi.org"] {
+  color: #4DD0E1;
+}
+
+li a[href^="https://doi.org"]:hover {
+  color: #7FE9FF;
 }
 
 /* -------------------------
-   Recently Accepted Publications
+   Recently Accepted Box
 ------------------------- */
 .recent-box {
   margin: 40px 0 60px 0;
@@ -176,7 +184,6 @@ u {
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(111,207,151,0.12), rgba(77,208,225,0.12));
   box-shadow: 0 0 25px rgba(111,207,151,0.25);
-  animation: fadeInUp 1s ease-out forwards;
 }
 
 .recent-box h2 {
@@ -191,7 +198,6 @@ u {
 .recent-box li {
   padding: 18px;
   border-radius: 14px;
-  background: rgba(0,0,0,0.35);
 }
 
 /* -------------------------
@@ -260,45 +266,40 @@ footer {
   <div class="recent-box" id="recent-box">
     <h2>Recently Accepted Papers</h2>
     <ul id="recent-list">
-
       <li data-title="SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF">
         <strong>SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF.</strong><br>
         <em>Pasquale Mone, Marco Ferrone, Francesco Spione, Dimitris Christodoulakis, Francesco Melillo, Antonio Rainone, Domenico Ponticelli, Tullio Tesorio, Marco Di Mauro, Anna Marro, Gaetano Macina, Maria Morgante, Germano Guerra, <u>Gaetano Santulli</u></em><br>
         <strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
       </li>
-
       <li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
         <strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
         <strong class="journal">CELL CYCLE</strong>. 2026. <em>In press.</em>
       </li>
-
       <li data-title="Autonomic neurotransmission in cardiovascular regulation and pathophysiology">
         <strong>Autonomic neurotransmission in cardiovascular regulation and pathophysiology.</strong><br>
         <em>Fahimeh Varzideh, Stanislovas S. Jankauskas, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
         <strong class="journal">FRONTIERS IN NEUROSCIENCE</strong>. 2026. <em>In press.</em>
       </li>
-
       <li data-title="Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist">
         <strong>Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist for obesity and type 2 diabetes.</strong><br>
         <em>Urna Kansakar, Stanislovas S. Jankauskas, Shivangi Pande, Pasquale Mone, Fahimeh Varzideh, <u>Gaetano Santulli</u></em><br>
         <strong class="journal">INTERNATIONAL JOURNAL OF MOLECULAR SCIENCES</strong>. 2026. <em>In press.</em>
       </li>
-
     </ul>
   </div>
 
-  <!-- PubMed publications -->
+  <!-- Publications from PubMed -->
   <div id="publications">
     <p>Loading publications...</p>
   </div>
 
   <!-- Covers -->
   <div style="text-align:center; margin:50px 0; opacity:0; transform:translateY(25px); animation: fadeInUp 1s ease-out forwards; animation-delay:0.2s;">
-    <h2>Covers of Journals where the Santulli Lab published</h2>
+    <h2>Selection of Covers of our Best Papers</h2>
     <img src="covers.png" alt="Covers of Journals where the Santulli Lab published" style="max-width:100%; height:auto;">
   </div>
 
-  <!-- Counter -->
+  <!-- Page counter -->
   <div class="page-counter">
     Page Visits: <span id="counter">0</span>
   </div>
@@ -320,9 +321,7 @@ localStorage.setItem("pageCounter", count);
 document.getElementById("counter").textContent = count;
 
 /* PubMed query */
-const query =
-"((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
-
+const query = "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 const replacements = {
  "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
  "ISCIENCE":"iSCIENCE",
@@ -350,77 +349,62 @@ const replacements = {
  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
+/* Fetch PubMed with fadeInUp and hover effect */
 async function fetchPubMed() {
-  const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
-  const s = await (await fetch(esearch)).json();
+  try {
+    const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
+    const s = await (await fetch(esearch)).json();
+    const webenv = s.esearchresult.webenv;
+    const key = s.esearchresult.querykey;
+    const total = parseInt(s.esearchresult.count);
 
-  const webenv = s.esearchresult.webenv;
-  const key = s.esearchresult.querykey;
-  const total = parseInt(s.esearchresult.count);
+    let articles = [];
+    const step = 200;
 
-  let articles = [];
-  const step = 200;
+    for (let i = 0; i < total; i += step) {
+      const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
+      const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
 
-  for (let i = 0; i < total; i += step) {
-    const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
-    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
+      xml.querySelectorAll("PubmedArticle").forEach(a => {
+        const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
+        if (journalRaw.includes("RESEARCH SQUARE")) return;
 
-    xml.querySelectorAll("PubmedArticle").forEach(a => {
-      const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
-      if (journalRaw.includes("RESEARCH SQUARE")) return;
+        const journal = replacements[journalRaw] || journalRaw;
+        const pmid = a.querySelector("PMID")?.textContent;
+        const title = a.querySelector("ArticleTitle")?.textContent || "";
+        const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+        const authors = [...a.querySelectorAll("Author")]
+          .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
+          .join(", ")
+          .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
+        const doi = [...a.querySelectorAll("ArticleId")]
+          .find(x => x.getAttribute("IdType") === "doi")?.textContent;
 
-      const journal = replacements[journalRaw] || journalRaw;
-      const pmid = a.querySelector("PMID")?.textContent;
-      const title = a.querySelector("ArticleTitle")?.textContent || "";
-      const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+        articles.push({pmid, title, authors, journal, year, doi});
+      });
+    }
 
-      const authors = [...a.querySelectorAll("Author")]
-        .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
-        .join(", ")
-        .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
-
-      const doi = [...a.querySelectorAll("ArticleId")]
-        .find(x => x.getAttribute("IdType") === "doi")?.textContent;
-
-      articles.push({pmid, title, authors, journal, year, doi});
-    });
-  }
-
-  // Reverse: oldest = bottom
-  let html = "<ul>";
-  let pubNumber = articles.length; // Newest = highest
-  articles.forEach((art, index) => {
-    html += `
-      <li style="animation-delay:${index*0.03}s">
+    // Reverse so oldest = bottom, newest = top
+    let html = "<ul>";
+    let pubNumber = articles.length;
+    articles.forEach((art, index) => {
+      html += `<li style="animation-delay:${index*0.03}s">
         <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
         <em>${art.authors}</em><br>
         <strong class="journal">${art.journal}</strong>. ${art.year}.
         ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
       </li>`;
-    pubNumber--;
-  });
-  html += "</ul>";
-  document.getElementById("publications").innerHTML = html;
+      pubNumber--;
+    });
+    html += "</ul>";
+    document.getElementById("publications").innerHTML = html;
 
-  reconcileRecentWithPubMed();
-}
-
-function reconcileRecentWithPubMed() {
-  const pubmedTitles = [...document.querySelectorAll("#publications strong a")]
-    .map(x => x.textContent.toLowerCase());
-
-  document.querySelectorAll("#recent-list li").forEach(li => {
-    const key = li.dataset.title.toLowerCase();
-    if (pubmedTitles.some(t => t.includes(key))) li.remove();
-  });
-
-  if (!document.querySelector("#recent-list li")) {
-    document.getElementById("recent-box").style.display = "none";
+    reconcileRecentWithPubMed();
+  } catch(e) {
+    document.getElementById("publications").innerHTML = "<p>Failed to load publications.</p>";
+    console.error(e);
   }
 }
 
-fetchPubMed();
-</script>
-
-<script data-goatcounter="https://gaetanosantulli.goatcounter.com/count"
-        async src="//gc
+function reconcileRecentWithPubMed() {
+  const pubmedTitles = [...document.query
