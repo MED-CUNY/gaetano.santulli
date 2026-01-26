@@ -146,14 +146,14 @@ nav a:hover {
 }
 
 /* -------------------------
-   Publications & hover effect
+   Publications & hover effect (MATCHING FIRST PAGE)
 ------------------------- */
-.content ul {
+.pub-list {
   list-style: none;
   padding-left: 0;
 }
 
-.content li {
+.pub-list li {
   margin-bottom: 22px;
   padding: 12px;
   background-color: #111111;
@@ -165,7 +165,7 @@ nav a:hover {
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
-.content li:hover {
+.pub-list li:hover {
   transform: scale(1.02);
   background-color: #1a1a1a;
   box-shadow: 0 5px 12px rgba(255,255,255,0.15);
@@ -338,9 +338,8 @@ count++;
 localStorage.setItem("pubPageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* PubMed */
-const query =
-"((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
+/* PubMed query */
+const query = "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
 const replacements = {
  "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
@@ -372,7 +371,6 @@ const replacements = {
 async function fetchPubMed() {
   const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
   const s = await (await fetch(esearch)).json();
-
   const webenv = s.esearchresult.webenv;
   const key = s.esearchresult.querykey;
   const total = parseInt(s.esearchresult.count);
@@ -405,22 +403,20 @@ async function fetchPubMed() {
     });
   }
 
-  // Reverse so oldest = bottom, newest = top
-  let html = "<ul>";
-  let pubNumber = articles.length; 
+  // Generate HTML with hover animation matching first page
+  let html = "<ul class='pub-list'>";
   articles.forEach((art, index) => {
     html += `
-      <li style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
-        <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
+      <li style="animation-delay:${index*0.03}s">
+        <strong><a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
         <em>${art.authors}</em><br>
         <strong class="journal">${art.journal}</strong>. ${art.year}.
         ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
       </li>`;
-    pubNumber--;
   });
   html += "</ul>";
-
   document.getElementById("publications").innerHTML = html;
+
   reconcileRecentWithPubMed();
 }
 
