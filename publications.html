@@ -17,6 +17,9 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <style>
+/* -------------------------
+   Base styling
+------------------------- */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -26,6 +29,9 @@ body {
   color: #B8BDC7;
 }
 
+/* -------------------------
+   Navigation bar
+------------------------- */
 nav {
   background-color: #00755E;
   padding: 12px 24px;
@@ -59,6 +65,7 @@ nav a:hover {
   color: #d0f0e8;
 }
 
+/* Hamburger */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -76,6 +83,9 @@ nav a:hover {
   .hamburger { display: block; }
 }
 
+/* -------------------------
+   Page content
+------------------------- */
 .content {
   max-width: 1000px;
   margin: 60px auto;
@@ -94,14 +104,27 @@ nav a:hover {
   color: #F5F5F5;
 }
 
+.content p {
+  margin-bottom: 20px;
+}
+
 .content a {
   color: #F5F5F5;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
 .content a:hover {
   color: #8EC9FF;
   text-decoration: underline;
+}
+
+.content li a[href^="https://doi.org"] {
+  color: #4DD0E1;
+}
+
+.content li a[href^="https://doi.org"]:hover {
+  color: #7FE9FF;
 }
 
 .content ul {
@@ -111,14 +134,24 @@ nav a:hover {
 
 .content li {
   margin-bottom: 22px;
+  transition: transform 0.2s;
+}
+
+.content li:hover {
+  transform: scale(1.02);
 }
 
 strong.journal {
   color: #6FCF97;
 }
 
-u { text-decoration: underline; }
+u {
+  text-decoration: underline;
+}
 
+/* -------------------------
+   Recently Accepted Publications
+------------------------- */
 .recent-box {
   margin: 40px 0 60px 0;
   padding: 30px;
@@ -134,13 +167,37 @@ u { text-decoration: underline; }
   background: linear-gradient(90deg, #6FCF97, #4DD0E1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
 }
 
+.recent-box li {
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.35);
+}
+
+/* -------------------------
+   Animations
+------------------------- */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes shimmer {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* For PubMed publications */
+.publication-list li {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* -------------------------
+   Counter
+------------------------- */
 .page-counter {
   margin-top: 50px;
   padding: 15px;
@@ -152,6 +209,9 @@ u { text-decoration: underline; }
   border-radius: 10px;
 }
 
+/* -------------------------
+   Footer
+------------------------- */
 footer {
   text-align: center;
   padding: 20px;
@@ -165,6 +225,7 @@ footer {
 
 <body>
 
+<!-- Navigation -->
 <nav>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <ul id="nav-menu">
@@ -181,64 +242,69 @@ footer {
 </nav>
 
 <div class="content">
-<h1>Publications</h1>
+  <h1>Publications</h1>
 
-<div class="recent-box" id="recent-box">
-<h2>Recently Accepted Papers</h2>
-<ul id="recent-list">
+  <div class="recent-box" id="recent-box">
+    <h2>Recently Accepted Papers</h2>
+    <ul id="recent-list">
 
-<li data-title="SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF">
-<strong>SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF.</strong><br>
-<em>Pasquale Mone, Marco Ferrone, Francesco Spione, Dimitris Christodoulakis, Francesco Melillo, Antonio Rainone, Domenico Ponticelli, Tullio Tesorio, Marco Di Mauro, Anna Marro, Gaetano Macina, Maria Morgante, Germano Guerra, <u>Gaetano Santulli</u></em><br>
-<strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
-</li>
+      <li data-title="SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF">
+        <strong>SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF.</strong><br>
+        <em>Pasquale Mone, Marco Ferrone, Francesco Spione, Dimitris Christodoulakis, Francesco Melillo, Antonio Rainone, Domenico Ponticelli, Tullio Tesorio, Marco Di Mauro, Anna Marro, Gaetano Macina, Maria Morgante, Germano Guerra, <u>Gaetano Santulli</u></em><br>
+        <strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
+      </li>
 
-<li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
-<strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
-<strong class="journal">CELL CYCLE</strong>. 2026. <em>In press.</em>
-</li>
+      <li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
+        <strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
+        <strong class="journal">CELL CYCLE</strong>. 2026. <em>In press.</em>
+      </li>
 
-<li data-title="Autonomic neurotransmission in cardiovascular regulation and pathophysiology">
-<strong>Autonomic neurotransmission in cardiovascular regulation and pathophysiology.</strong><br>
-<em>Fahimeh Varzideh, Stanislovas S. Jankauskas, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
-<strong class="journal">FRONTIERS IN NEUROSCIENCE</strong>. 2026. <em>In press.</em>
-</li>
+      <li data-title="Autonomic neurotransmission in cardiovascular regulation and pathophysiology">
+        <strong>Autonomic neurotransmission in cardiovascular regulation and pathophysiology.</strong><br>
+        <em>Fahimeh Varzideh, Stanislovas S. Jankauskas, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
+        <strong class="journal">FRONTIERS IN NEUROSCIENCE</strong>. 2026. <em>In press.</em>
+      </li>
 
-<li data-title="Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist">
-<strong>Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist for obesity and type 2 diabetes.</strong><br>
-<em>Urna Kansakar, Stanislovas S. Jankauskas, Shivangi Pande, Pasquale Mone, Fahimeh Varzideh, <u>Gaetano Santulli</u></em><br>
-<strong class="journal">INTERNATIONAL JOURNAL OF MOLECULAR SCIENCES</strong>. 2026. <em>In press.</em>
-</li>
+      <li data-title="Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist">
+        <strong>Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist for obesity and type 2 diabetes.</strong><br>
+        <em>Urna Kansakar, Stanislovas S. Jankauskas, Shivangi Pande, Pasquale Mone, Fahimeh Varzideh, <u>Gaetano Santulli</u></em><br>
+        <strong class="journal">INTERNATIONAL JOURNAL OF MOLECULAR SCIENCES</strong>. 2026. <em>In press.</em>
+      </li>
 
-</ul>
+    </ul>
+  </div>
+
+  <div id="publications">
+    <p>Loading publications...</p>
+  </div>
+
+  <!-- Cover image with title and animation -->
+  <div style="text-align:center; margin:50px 0; animation: fadeInUp 1.2s ease-out forwards;">
+    <h2>Covers of Journals where the Santulli Lab published</h2>
+    <img src="cover.png" alt="Covers of Journals where the Santulli Lab published" style="max-width:100%; height:auto;">
+  </div>
+
+  <div class="page-counter">
+    Page Visits: <span id="counter">0</span>
+  </div>
 </div>
 
-<div id="publications">
-<p>Loading publications...</p>
-</div>
-
-<!-- ADDED SECTION -->
-<div style="text-align:center; margin:50px 0; animation: fadeInUp 1.2s ease-out forwards;">
-<h2>Covers of Journals where the Santulli Lab published</h2>
-<img src="covers.png" alt="Covers of Journals where the Santulli Lab published" style="max-width:100%; height:auto;">
-</div>
-
-<div class="page-counter">
-Page Visits: <span id="counter">0</span>
-</div>
-</div>
-
-<footer>&copy; 2026 Prof. Gaetano Santulli</footer>
+<footer>
+  &copy; 2026 Prof. Gaetano Santulli
+</footer>
 
 <script>
-function toggleMenu(){document.getElementById('nav-menu').classList.toggle('active');}
+function toggleMenu() {
+  document.getElementById('nav-menu').classList.toggle('active');
+}
 
+/* Counter */
 let count = localStorage.getItem("pageCounter") || 5400;
 count++;
 localStorage.setItem("pageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* PubMed */
+/* PubMed query */
 const query =
 "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
@@ -276,15 +342,16 @@ async function fetchPubMed() {
   const key = s.esearchresult.querykey;
   const total = parseInt(s.esearchresult.count);
 
-  let html = "<ul>";
+  let html = '<ul class="publication-list">';
   let pubNumber = total;
   const step = 200;
+  let delay = 0; // animation stagger
 
   for (let i = total - step; i >= 0; i -= step) {
     const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
     const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
 
-    xml.querySelectorAll("PubmedArticle").forEach(a => {
+    [...xml.querySelectorAll("PubmedArticle")].reverse().forEach(a => {
       const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
       if (journalRaw.includes("RESEARCH SQUARE")) return;
 
@@ -302,12 +369,13 @@ async function fetchPubMed() {
         .find(x => x.getAttribute("IdType") === "doi")?.textContent;
 
       html += `
-<li>
+<li style="animation-delay:${delay}ms">
 <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a></strong><br>
 <em>${authors}</em><br>
 <strong class="journal">${journal}</strong>. ${year}.
 ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
 </li>`;
+      delay += 80;
       pubNumber--;
     });
   }
