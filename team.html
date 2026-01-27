@@ -12,9 +12,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team - Prof. Gaetano Santulli</title>
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+<!-- SEO Title & Description -->
+<title>Team – Santulli Lab | Cardiovascular & Metabolic Disease – Prof. Gaetano Santulli</title>
+<meta name="description" content="Meet the team of the Santulli Lab, led by Prof. Gaetano Santulli. Our group includes postdocs, PhD students, MD students, and researchers advancing cardiovascular and metabolic disease research.">
+<meta name="keywords" content="Santulli Lab, Gaetano Santulli, cardiovascular research, metabolic research, postdoctoral fellows, PhD students, MD students, research team">
+<meta name="robots" content="index, follow">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://med-cuny.github.io/gaetanosantulli/team.html">
+
+<!-- Favicon -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Santulli Lab",
+  "url": "https://med-cuny.github.io/gaetanosantulli/",
+  "logo": "https://med-cuny.github.io/gaetanosantulli/favicon.ico",
+  "founder": {
+    "@type": "Person",
+    "name": "Prof. Gaetano Santulli",
+    "jobTitle": "Professor of Cardiology",
+    "url": "https://med-cuny.github.io/gaetanosantulli/about.html"
+  },
+  "member": [
+    {
+      "@type": "Person",
+      "name": "Prof. Gaetano Santulli",
+      "jobTitle": "Principal Investigator",
+      "image": "https://med-cuny.github.io/gaetanosantulli/santulli.jpg",
+      "sameAs": "https://scholar.google.com/citations?user=IX4IYaEAAAAJ&hl=en"
+    }
+  ]
+}
+</script>
 
 <style>
 /* -------------------------
@@ -179,7 +215,6 @@ h1 {
 /* -------------------------
    H-index animations
 ------------------------- */
-/* Fade-up on page load */
 .hindex-link {
   color: #36d1dc;
   text-decoration: none;
@@ -189,13 +224,11 @@ h1 {
   transition: opacity 0.8s ease, transform 0.8s ease, transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
 }
 
-/* After page load: show */
 .hindex-link.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Hover-only scale + glow */
 .hindex-link:hover {
   transform: scale(1.3);
   text-shadow: 0 0 12px #36f0e0, 0 0 20px #36f0e0;
@@ -295,7 +328,6 @@ piRow.innerHTML = `
   </div>
 `;
 
-// Fade-up animation after page load
 const hIndexLink = piRow.querySelector('.hindex-link');
 setTimeout(() => { hIndexLink.classList.add('show'); }, 100);
 
@@ -338,7 +370,7 @@ line3Members.forEach(m => {
 });
 
 // ---------------------------
-// Line 4+ (names & roles only, 4 per row)
+// Line 4+ (names & roles only)
 const line4plusMembers = [
   {name:"Scott Wilson", role:"MD Resident"},
   {name:"Roberta Avvisato", role:"PhD Student"},
