@@ -143,15 +143,43 @@ ul.pub-list li {
   background-color: #111111;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(255,255,255,0.08);
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s, opacity 0.3s, height 0.3s, margin 0.3s, padding 0.3s;
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.3s,
+    height 0.3s,
+    margin 0.3s,
+    padding 0.3s;
+
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
+/* 1️⃣ Micro-zoom + lift */
 ul.pub-list li:hover {
-  transform: scale(1.02);
+  transform: scale(1.02) translateY(-2px);
   background-color: #1a1a1a;
-  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
+  box-shadow: 0 8px 18px rgba(255,255,255,0.15);
+}
+
+/* 2️⃣ Left accent bar reveal */
+ul.pub-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, #6FCF97, #4DD0E1);
+  transition: width 0.25s ease;
+}
+
+ul.pub-list li:hover::before {
+  width: 4px;
 }
 
 ul.pub-list li.hidden {
