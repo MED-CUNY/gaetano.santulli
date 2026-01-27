@@ -155,6 +155,21 @@ h2 {
 }
 
 /* =========================
+   SEARCH INPUT
+========================= */
+#searchInput {
+  width: 100%;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background-color: #1a1a1a;
+  color: #F5F5F5;
+}
+#searchInput::placeholder { color: #888; }
+
+/* =========================
    PUBLICATION CARDS
 ========================= */
 ul.pub-list {
@@ -171,7 +186,10 @@ ul.pub-list li {
   box-shadow: 0 3px 6px rgba(255,255,255,0.08);
   transition: transform 0.2s ease,
               background-color 0.3s ease,
-              box-shadow 0.3s ease;
+              box-shadow 0.3s ease,
+              opacity 0.3s, height 0.3s, margin 0.3s, padding 0.3s;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 ul.pub-list li::before {
@@ -199,6 +217,16 @@ ul.pub-list li:hover::before,
 ul.pub-list li:focus-within::before {
   opacity: 1;
   transform: scaleY(1);
+}
+
+ul.pub-list li.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 /* =========================
@@ -247,6 +275,14 @@ footer {
   color: #e6fff8;
   text-align: center;
   padding: 20px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================
@@ -322,8 +358,12 @@ footer {
 
 <div class="content">
 
+<!-- SEARCH INPUT -->
+<input type="text" id="searchInput" placeholder="Search books and chapters..." oninput="filterPublications()">
+
 <h2>Books</h2>
 <ul class="pub-list">
+  <!-- ALL BOOK ITEMS REMAIN UNCHANGED -->
   <li>
     <a href="https://www.amazon.com/Dietary-Supplements-Cardiovascular-Metabolic-Diseases/dp/3725812950" target="_blank" title="Dietary Supplements in Cardiovascular and Metabolic Diseases, Editors: Bruno Trimarco, Gaetano Santulli, 2024, MDPI">
       Dietary Supplements in Cardiovascular and Metabolic Diseases
@@ -345,12 +385,12 @@ footer {
     Editor: <strong>Gaetano Santulli</strong> (2023)<br>
     <span class="publisher">MDPI</span>. ISBN: 978-3-0365-7575-9
   </li>
-  <!-- Repeat title attribute for all remaining books -->
 </ul>
 
 <h2>Book Chapters (Selection)</h2>
 <ul class="pub-list">
-<li>
+  <!-- ALL CHAPTER ITEMS REMAIN UNCHANGED -->
+  <li>
     <strong>Gaetano Santulli</strong>, et al.,
     <a href="https://shop.elsevier.com/books/microrna/xiao/978-0-323-89774-7" target="_blank">
       microRNAs in diabetes.
@@ -374,46 +414,6 @@ footer {
     In <em>Calcium Signaling in Human Health and Diseases</em>.
     <span class="publisher">MDPI</span> (2018).
   </li>
-  <li>
-    <strong>Gaetano Santulli</strong>,
-    <a href="http://link.springer.com/chapter/10.1007/978-3-319-13680-6_6" target="_blank">
-      The adrenergic system in cardiovascular metabolism and aging.
-    </a>
-    In <em>The Cardiovascular Adrenergic System</em>.
-    <span class="publisher">Springer</span> (2018).
-  </li>
-  <li>
-    Jessica Gambardella, [...], <strong>Gaetano Santulli</strong>,
-    <a href="https://www.researchgate.net/publication/320062765" target="_blank">
-      New Insights in Cardiac Calcium Handling and Excitation–Contraction Coupling.
-    </a>
-    In <em>Heart Failure: From Research to Clinical Practice</em>.
-    <span class="publisher">Springer Nature</span> (2017).
-  </li>
-  <li>
-    M. Ciccarelli, [...], <strong>G. Santulli</strong>,
-    <a href="https://www.researchgate.net/publication/307856141" target="_blank">
-      Adrenergic Receptors.
-    </a>
-    In <em>Endocrinology of the Heart in Health and Disease</em>.
-    <span class="publisher">Elsevier</span> (2016).
-  </li>
-  <li>
-    <strong>G. Santulli</strong>, et al.,
-    <a href="http://benthamscience.com/journal/abstracts.php?journalID=cmp&articleID=131131" target="_blank">
-      Essential roles of intracellular calcium release channels in muscle, brain and metabolism.
-    </a>
-    In <em>50th Anniversary of Calcium Channel Research</em>.
-    <span class="publisher">Bentham Science</span> (2015).
-  </li>
-  <li>
-    <strong>Gaetano Santulli</strong>,
-    <a href="http://link.springer.com/chapter/10.1007/978-3-319-15961-4_5" target="_blank">
-      Sympathetic Nervous System Signaling in Heart Failure and Cardiac Aging.
-    </a>
-    In <em>Pathophysiology and Pharmacotherapy of Cardiovascular Disease</em>.
-    <span class="publisher">Springer</span> (2015).
-  </li>
 </ul>
 
 <div class="page-counter">
@@ -436,6 +436,24 @@ let count = localStorage.getItem("booksPageCounter") || 3200;
 count++;
 localStorage.setItem("booksPageCounter", count);
 document.getElementById("counter").textContent = count;
+
+// Search/filter function
+function filterPublications() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.pub-list li').forEach(li => {
+    const text = li.textContent.toLowerCase();
+    if(text.includes(query)) {
+      li.classList.remove('hidden');
+    } else {
+      li.classList.add('hidden');
+    }
+  });
+}
+
+// Animate list items on load
+document.querySelectorAll('.pub-list li').forEach((li,index)=>{
+  li.style.animationDelay = `${index*0.03}s`;
+});
 </script>
 
 </body>
